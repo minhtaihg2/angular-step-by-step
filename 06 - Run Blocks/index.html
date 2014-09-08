@@ -5,16 +5,19 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="app.js"></script>
 </head>
-<body ng-app ng-init="greeting = 'World'">
-    <div class="container">
-        <div>
-            <h3 class="text-center">AngularJS step by step</h3>
-        </div>
-        <hr/>
 
-        <input class="form-control" ng-model="greeting" placeholder="Greeting">
-        Hello {{greeting}}
+<body ng-app="myApp">
+<div class="container">
+
+    <div>
+        <h3 class="text-center">AngularJS run Block</h3>
     </div>
+    <hr/>
+    <div class="col-md-12">
+        Date : {{timeUp | date : 'mediumDate'}} <!--Format date-->
+    </div>
+</div>
 </body>
 </html>
