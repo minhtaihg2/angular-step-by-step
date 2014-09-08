@@ -10,7 +10,7 @@
 <body class="container" ng-app="myApp">
 <div>
     <div>
-        <h3 class="text-center">AngularJS ng-repeat</h3>
+        <h3 class="text-center">AngularJS ng-repeat $even and $odd</h3>
     </div>
     <hr/>
 </div>
@@ -18,17 +18,25 @@
     <table class="table table-striped table-bordered">
         <tr>
             <th>ID</th>
-            <th>firstName</th>
-            <th>lastName</th>
+            <th>FirstName</th>
+            <th>LastName</th>
             <th>Phone</th>
+            <td>Even</td>
         </tr>
-        <tr ng-click="edit(item)" ng-repeat="item in data">
+        <tr ng-class="{even : $even}" ng-repeat="item in data"> <!--khi $event là true thì ng-class của Angular sẽ thêm class even vào-->
             <td>{{$index}}</td>
             <td>{{item.firstName}}</td>
             <td>{{item.lastName}}</td>
             <td>{{item.Phone}}</td>
+            <td>{{$even}}</td>
+            <!--even trả về chỉ số mảng chẵn hay không?-->
         </tr>
     </table>
 </div>
+<style>
+    .even{
+        background: cadetblue;
+    }
+</style>
 </body>
 </html>
