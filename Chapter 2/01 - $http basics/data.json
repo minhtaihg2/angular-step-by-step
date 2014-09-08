@@ -1,0 +1,27 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Kenny",
+        "Phone": "+842 184 181"
+    },
+    {
+        "firstName": "Pham",
+        "lastName": "Tai",
+        "Phone": "+431 310 210"
+    },
+    {
+        "firstName": "Tran",
+        "lastName": "Khanh",
+        "Phone": "+842 234 234"
+    },
+    {
+        "firstName": "Cong",
+        "lastName": "Vinh",
+        "Phone": "+122 222 121"
+    },
+    {
+        "firstName": "Nguyen",
+        "lastName": "Long",
+        "Phone": "+522 210 001"
+    }
+]
