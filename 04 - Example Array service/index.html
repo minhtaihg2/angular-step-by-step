@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular step by step</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="serviceArray.js"></script>
+    <script src="app.js"></script>
+</head>
+<body class="container" ng-app="myApp">
+<div>
+    <div>
+        <h3 class="text-center">Action array with values</h3>
+    </div>
+    <hr/>
+</div>
+<div ng-controller="myCtrl">
+    <div class="well">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputFirst">First Name</label>
+                <input id="exampleInputFirst" class="form-control" type="text" ng-model="data.firstName"
+                       placeholder="Enter name"/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputLast">Last Name</label>
+                <input id="exampleInputLast" class="form-control" type="text" ng-model="data.lastName"
+                       placeholder="Enter lastName"/>
+            </div>
+            <button class="btn btn-primary" ng-click="add()">Add</button>
+        </form>
+    </div>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>firstName</th>
+            <th>lastName</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-click="edit(item)" ng-repeat="item in getValueArray()">
+            <td>{{$index}}</td>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td> <i class="glyphicon glyphicon-edit"></i></td>
+            <td ng-click="remove($index)"><i class="glyphicon glyphicon-remove"></i></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
