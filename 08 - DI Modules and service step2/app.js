@@ -1,16 +1,22 @@
-'use strich'
+'use strict'
 
-angular.module("myApp", [
+var app = angular.module("myApp", [
     'notifications',
     'Cars'
 ])
     .run(['$rootScope', function ($rootScope) {
         $rootScope.timeUp = new Date();
-    }])
-    .controller("myCtrl", ['$scope', 'Car', function ($scope, Car) {
-        Car.start();
     }]);
-  angular.module("Cars", [])
+
+
+//registering providers - module as a variable
+
+app.controller("myCtrl", ['$scope', 'Car', function ($scope, Car) {
+    Car.start();
+}]);
+
+
+angular.module("Cars", [])
     .factory("Car", function ($log, getNotification) {
         return {
             start: function () {

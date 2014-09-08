@@ -1,11 +1,15 @@
 'use strich'
 
-angular.module("myApp", [
+var app = angular.module("myApp", [
     'notifications'
-])
-    .run(['$rootScope', function ($rootScope) {
-        $rootScope.timeUp = new Date();
-    }])
+]);
+app.run(['$rootScope', function ($rootScope) {
+    $rootScope.timeUp = new Date();
+}])
+
+//registering providers - getting a module instance
+
+angular.module("myApp")
     .controller("myCtrl", ['$scope', 'Car', function ($scope, Car) {
         Car.start();
     }])
