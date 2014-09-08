@@ -3,7 +3,7 @@ angular.module("myApp",[])
 		
 	}])
 	.controller("myCtrlParent",['$scope',function($scope){
-		$scope.name = "Nodejs";
+		$scope.greeting = "Nodejs";
 	}]);
 
 	// Mặc định trong angular khi controller định ngĩa ra thì model của controller đó không tồn tại thì nó sẽ tìm kiếm

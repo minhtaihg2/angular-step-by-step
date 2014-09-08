@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hello world</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <title>Hello world</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 </head>
-<body ng-app ng-init="name = 'Pham Minh Tai'">
- <input ng-model="name" placeholder="Enter name!!!">
- Hello {{name}}
+<body ng-app ng-init="greeting = 'World'">
+    <div class="container">
+        <div>
+            <h3 class="text-center">AngularJS step by step</h3>
+        </div>
+        <hr/>
+
+        <input class="form-control" ng-model="greeting" placeholder="Greeting">
+        Hello {{greeting}}
+    </div>
 </body>
 </html>

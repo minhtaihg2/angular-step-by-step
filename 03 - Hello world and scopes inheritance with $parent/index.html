@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hello world</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <title>Hello world</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
     <script src="app.js"></script>
 </head>
 
 <body ng-app="myApp">
-	<div ng-controller="myCtrlParent">
-		<div ng-controller="myCtrl">
-			<input class="form-control" ng-model="$parent.name" placeholder="Enter name!!!">
-		 	Hello {{name}}
-		</div>
+<div class="container">
+    <div>
+        <h3 class="text-center">AngularJS step by step</h3>
+    </div>
+    <hr/>
+    <div class="col-md-6" ng-controller="myCtrlParent">
+        <div ng-controller="myCtrl">
+            <input class="form-control" ng-model="$parent.greeting" placeholder="Enter greeting!!!">
+            Hello {{greeting}}
+        </div>
 
-		<!-- có 2 cách để lấy dữ liệu từ $scope cao hơn,đó là sử dụng mặc định (đọc ở file app.js) hay sử dụng server $parent (cũng có thể gán nó vào 1 đối tượng) -->
-	</div> 
+        <!-- có 2 cách để lấy dữ liệu từ $scope cao hơn,đó là sử dụng mặc định (đọc ở file app.js) hay sử dụng server $parent (cũng có thể gán nó vào 1 đối tượng) -->
+    </div>
+    <div class="col-md-6">
+        <pre>
+Mặc định trong angular khi controller định ngĩa ra thì model của controller đó không tồn tại thì nó sẽ tìm kiếm ở mức level cao hơn,cho đến khi tìm thấy,khi không tìm thấy mặc định sẽ không hiển thị model
+        </pre>
+    </div>
+</div>
 </body>
 </html>
