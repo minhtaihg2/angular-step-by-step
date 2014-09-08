@@ -20,6 +20,6 @@ angular.module("myApp", [
 angular.module("notifications", [])
     .factory("getNotification", function () {
         return {
-            getType: 'Car get ready!!!'
+            getType: 'Car get ready step 1!!!'
         }
     })
