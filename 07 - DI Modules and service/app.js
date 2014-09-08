@@ -7,7 +7,7 @@ angular.module("myApp", [
         $rootScope.timeUp = new Date();
     }])
     .controller("myCtrl", ['$scope', 'Car', function ($scope, Car) {
-            Car.start();
+        Car.start();
     }])
     .factory("Car", function ($log, getNotification) {
         return {
