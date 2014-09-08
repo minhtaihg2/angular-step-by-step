@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular step by step</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+</head>
+<body class="container" ng-app>
+<div ng-init="name = 'AngularJS'">
+    <div>
+        <h3 class="text-center">AngularJS promise</h3>
+    </div>
+    <hr/>
+    <ul>
+        <li><input ng-model="name"></li>
+        <li><input ng:model="name"></li>
+        <li><input ng_model="name"></li>
+        <li><input x-ng-model="name"></li>
+        <li><input x-ng:model="name"></li>
+        <li><input x-ng_model="name"></li>
+        <li><input data-ng-model="name"></li>
+        <li><input data-ng:model="name"></li>
+        <li><input data-ng_model="name"></li>
+        <li><input data_ng-model="name"></li>
+    </ul>
+</div>
+
+</body>
+</html>

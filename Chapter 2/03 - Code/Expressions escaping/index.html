@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular step by step</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-sanitize.js"></script>
+    <script src="app.js"></script>
+</head>
+<body class="container" ng-app="myApp">
+<div ng-controller="escaping">
+    <div>
+        <h3 class="text-center">AngularJS escaping</h3>
+    </div>
+    <hr/>
+    <div>
+        <p> msg : {{msg}}</p>
+        <p ng-bind-html-unsafe="msg"></p>
+        <p ng-bind-html="msg"></p>
+        <p ng-bind="msg"></p>
+    </div>
+</div>
+
+</body>
+</html>
