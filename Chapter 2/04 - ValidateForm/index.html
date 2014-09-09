@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular step by step</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="myApp">
+<div class="container" ng-controller="myCtrl">
+
+    <div>
+        <h3 class="text-center">AngularJS validate form</h3>
+    </div>
+    <hr/>
+
+    <form name="signUp_form" novalidate ng-submit="submitForm()">
+        <input class="form-control"
+               type="text"
+               placeholder="Enter name?"
+               data-ng-model="person.name"
+               ng-maxlength="10"
+               ng-minlength="3"
+               name="name"
+                />
+        <span ng-show="signUp_form.name.$dirty">$dirty - True | nếu người dùng đã tác động vào Form</span><br/>
+        <span ng-show="signUp_form.name.$invalid">$invalid - True | Form được xác nhận là lỗi nhập dữ liệu</span><br/>
+        <span ng-show="signUp_form.name.$valid">$valid - True | Form đã được duyệt</span><br/>
+        <span ng-show="signUp_form.name.$pristine">$pristine - True | Người dùng chưa có thay đổi gì trên Form</span><br/>
+        <span ng-show="signUp_form.name.$error.required">Require - Trường này yêu cầu phải nhập</span><br/>
+        <span ng-show="signUp_form.name.$error.minlength">$error.minlength =3  : tối thiểu 3 ký tự</span><br/>
+        <span ng-show="signUp_form.name.$error.maxlength">$error.maxlength = 10 : tối đa 10 ký tự</span><br/>
+
+        <button type="submit">OK</button>
+    </form>
+</div>
+</body>
+</html>
