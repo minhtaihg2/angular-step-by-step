@@ -1,4 +1,6 @@
-angular.module('arrayFilters', [])
+angular.module('arrayFilters', [
+    'angularUtils.directives.dirPagination'
+])
 
     .controller('ArrayFiltersCtrl', function ($scope) {
 
@@ -37,15 +39,5 @@ angular.module('arrayFilters', [])
             return property === $scope.filterProperty && $scope.reverse;
         };
 
-        $scope.sizePage = 3;
-        $scope.pages = [];
-        var dataLength = Math.ceil($scope.backlog.length / $scope.sizePage);
-        for(var i = 0; i < dataLength; i++){
-            $scope.pages.push(i);
-        };
 
-        $scope.pageNavigation = function (index) {
-            var start = (index - 1);
-            $scope.backlog = $scope.backlog.slice(start *$scope.sizePage,$scope.backlog.length);
-        }
     });

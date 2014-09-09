@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="pagination.js"></script>
     <script src="app.js"></script>
 </head>
-<body ng-app="arrayFilters" ng-controller="ArrayFiltersCtrl">
+<body ng-app="arrayFilters" ng-controller="ArrayFiltersCtrl" class="container">
 
 <h3>Filtering by string expression</h3>
 <div class="well">
@@ -31,7 +32,7 @@
     </th>
     </thead>
     <tbody>
-    <tr ng-repeat="item in backlog | filter:criteria | orderBy: filterProperty : reverse | limitTo:3">
+    <tr dir-paginate="item in backlog | itemsPerPage: 3 | filter:criteria | orderBy: filterProperty : reverse">
         <td>{{item.name}}</td>
         <td>{{item.desc}}</td>
         <td>{{item.priority}}</td>
@@ -46,11 +47,7 @@
     </tfoot>
 </table>
 <div class="text-center">
-    <ul class="pagination">
-        <li><a>Previous</a></li>
-        <li ng-click="pageNavigation(page + 1)" ng-repeat="page in pages"><a> {{page + 1}} </a></li>
-        <li><a>Next</a></li>
-    </ul>
+    <dir-pagination-controls></dir-pagination-controls>
 </div>
 </body>
 </html>
