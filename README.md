@@ -6,13 +6,15 @@ Learning AngularJS step by step
 #### Chapter 1 Basic AngularJS with 
 
 * Controller
-* Directive
+* Core API angularJS
 * Module DI
 
 #### Chapter 2
+* Directive
 * $http
 * Promise
 * Filter
+* Validate
 
 #### Chapter 3
 
