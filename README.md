@@ -1,4 +1,4 @@
-angular-step-by-step
+Angular-step-by-step
 ====================
 
 Learning AngularJS step by step
