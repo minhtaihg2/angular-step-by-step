@@ -3,11 +3,21 @@ angular-step-by-step
 
 Learning AngularJS step by step
 
-##### Chapter 1 : Basic AngularJS with controller,directive and module DI
+#### Chapter 1 Basic AngularJS with 
 
-##### Chapter 2 : $http,promise,filter
+* Controller
+* Directive
+* Module DI
 
-##### Chapter 3 : building website with grunt,bower using RESTful API
+#### Chapter 2
+* $http
+* Promise
+* Filter
+
+#### Chapter 3
+
+Building website with grunt,bower using RESTful API
+
 
 
 npm install
