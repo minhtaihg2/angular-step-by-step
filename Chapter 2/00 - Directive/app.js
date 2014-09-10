@@ -1,7 +1,7 @@
 'use strict'
 
 var app = angular.module("myApp", []);
-app.controller("myCtrl", ['$scope', function ($scope) {
+app.controller("myCtrl", ['$scope', function ($scope, $log) {
     $scope.greeting = "World";
 }]);
 
