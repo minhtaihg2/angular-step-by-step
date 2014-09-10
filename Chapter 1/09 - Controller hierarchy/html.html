@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular step by step</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="myApp">
+<div class="container">
+
+    <div>
+        <h3 class="text-center">AngularJS Controller Hierarchy </h3>
+    </div>
+    <hr/>
+
+    <div ng-controller="parentCtrl">
+        {{someValue}}
+        <button ng-click="callAction()">Community to child</button>
+        <div ng-controller="childCtrl">
+            {{someValue}}
+            <button ng-click="callParent()">Community to parent</button>
+        </div>
+    </div>
+
+
+    <h3>Example 2</h3>
+
+    <div ng-controller="parentCtrl2">
+        {{data.someValue}}
+        <button ng-click="callAction()">Community to child</button>
+        <div ng-controller="childCtrl2">
+            {{data.someValue}}
+            <button ng-click="callParent()">Community to parent</button>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

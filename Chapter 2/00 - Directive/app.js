@@ -28,7 +28,7 @@ app.directive("myDirectiveTwo", function () {
     }
 });
 
-
+// directive 3
 app.directive("myDirectiveTwoScope", function () {
     return {
         restrict: 'E',
@@ -45,20 +45,22 @@ app.directive("myDirectiveTwoScope", function () {
 
 
 
-// directive 3
+// directive 4
 
 app.directive("myDirectiveThree", function () {
     return {
         restrict: 'E',
-        template: '<p>Hello {{name}}</p>',
+        template: ' <input type="text" ng-model="name" placeholder="enter name"/> <p>Hello {{name}}</p>',
         scope : {
-            user : '@'
+            user : '@someAttrs',
+            company : '@'
         },
         controller : function($scope){
             $scope.name = $scope.user;
         },
         link : function(scope,ele,attrs){
             console.log(scope.user);
+            console.log(scope.company);
         }
     }
 });
