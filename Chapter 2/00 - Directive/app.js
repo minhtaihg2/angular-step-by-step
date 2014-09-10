@@ -21,7 +21,8 @@ app.directive("myDirectiveOne", function () {
 app.directive("myDirectiveTwo", function () {
     return {
         restrict: 'E',
-        template: '<p>Hello {{greeting}}</p>',
+        replace: true,
+        template: '<div><p>Hello {{greeting}}</p></div>',
         controller: function ($scope) {  // tạo 1 controller xử lý dữ liệu
             $scope.greeting = "world"
         }
@@ -66,13 +67,14 @@ app.directive("myDirectiveThree", function () {
 app.directive("paper", function () {
     return {
         restrict: 'EA',
-        transclude : true,
-        template: '<div ng-hide="isDisabled">' +
+        transclude: true,
+        replace: true,
+        template: '<div><div ng-hide="isDisabled">' +
             '<button class="btn btn-primary" ng-click="disable()">Click me</button>' +
             '<p>Directive {{action}}</p>' +
             '</div>' +
             '<p ng-show="isDisabled">$timeout : {{count}}</p>' +
-            '<p ng-transclude></p>',
+            '<p ng-transclude></p></div>',
         controller: function ($scope, $timeout, $log) {
             var myTime;
             $scope.action = "Controller";
@@ -81,7 +83,7 @@ app.directive("paper", function () {
                 $scope.isDisabled = true;
                 $scope.count = 1;
                 myTime = setInterval(function () {
-                    $scope.$apply(function(){
+                    $scope.$apply(function () {
                         $scope.count += 1;
                     });
                     if ($scope.count == 6) {
