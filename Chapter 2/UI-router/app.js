@@ -11,7 +11,7 @@ var app = angular.module('myApp', [
             abstract: true, // khai báo abstract là để định ngĩa rằng có state con khi hiển thị (ngĩa là còn có 1 ui-view trong )
             url: '', // mặc đinh '' để xác định nó sẽ hiển thị view (view mặc định lấy từ otherwise)
             controller: 'HomeCtrl', // controller xu ly cho views
-            templateUrl: 'views/home.html'
+            templateUrl: 'views/home.html' // lay view hien thi
         })
         .state('home.list', {
             url: '/detail',
@@ -34,11 +34,21 @@ var app = angular.module('myApp', [
         })
         .state('skills', {
             url: '/skill',
-            templateUrl: 'views/skill.html'
+            views: {
+                '': {
+                    templateUrl: 'views/skill.html'
+                },
+                'view1@skills': {
+                    template: '<p>views 1</p>'
+                },
+                'view2@skills': {
+                    template: '<p>Views 2</p>'
+                }
+            }
         })
 
 
-}]).run(['$rootScope', '$state', function ($rootScope, $state) {
+}]).run(['$rootScope', '$state', '$log', function ($rootScope, $state, $log) {
     $rootScope.greet = 'AngularJS ui-router';
     $rootScope.goToPage = function (state, id) {
         if (id) {
@@ -46,7 +56,8 @@ var app = angular.module('myApp', [
         } else {
             $state.go(state)
         }
-    }
+    };
+    $rootScope.$state = $state; // thiết lập để active 1 là 1 child (xem chi tiết tại view : home.html line 21)
 }])
 
 app.controller('HomeCtrl', ['$scope', '$state', function ($scope, $stateParams) {
@@ -61,8 +72,8 @@ app.controller('listCtrl', ['$scope', '$log', function ($scope, $log) {
 
 }]);
 
-app.controller('detailCtrl', ['$scope', '$log', '$stateParams', function ($scope, $log, $stateParams) {
-        var _id = $stateParams.id;
-        $log.info('id : ',_id);
-        $scope.IdProducts = _id;
+app.controller('detailCtrl', ['$scope', '$log', '$stateParams', '$state', function ($scope, $log, $stateParams, $state) {
+    var _id = $stateParams.id;
+    $log.info('id : ', _id, $state.includes('home.detail'));// check id tu url va check boolean state dung' la home.detal hay ko?
+    $scope.IdProducts = _id;
 }]);

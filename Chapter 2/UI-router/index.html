@@ -18,7 +18,7 @@
     <hr/>
     <div class="col-md-4">
         <ul class="nav nav-pills nav-stacked">
-            <li><a ui-sref="home.main" ui-sref-active="active" href="#">Home</a></li>
+            <li><a ui-sref="home.main" ui-sref-active="active" data-ng-class="{ active: $state.includes('home.detail') }" href="#">Home</a></li>
             <li><a ui-sref="books" ui-sref-active="active" href="#">Books</a></li>
             <li><a ui-sref="skills" ui-sref-active="active" href="#">Skill</a></li>
         </ul>
