@@ -27,3 +27,11 @@ npm install
 bower update
 
 grunt `Opening server for ... on port 9001.`
+
+
+#### With server node : 
+
+
+npm install
+
+npm start
