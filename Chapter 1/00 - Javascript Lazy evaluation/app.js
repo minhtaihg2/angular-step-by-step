@@ -4,7 +4,7 @@ angular.module("myApp",[])
         var objectData = {};
 
         var getValue = function(c){
-            return c || 10; //  nếu C có giá trị gán kết quả trả về là c không mặc định khởi tạo = 10
+            return c || 10; 
         };
 
         console.log(getValue(5));
@@ -19,7 +19,7 @@ angular.module("myApp",[])
         };
 
         var isString2 = function (value) {
-            return value != null && typeof value == 'string';  // && cả 2 điều kiện đều đúng
+            return value != null && typeof value == 'string'; 
         };
 
 
@@ -33,7 +33,7 @@ angular.module("myApp",[])
             }
         };
         var numberChange2 = function (value) {
-            return value >= 20 && value != null && (value = 20); // check true hết các giá trị sau đó gán giá trị
+            return value >= 20 && value != null && (value = 20); 
         };
 
         console.log(numberChange(22));
