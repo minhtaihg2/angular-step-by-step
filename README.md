@@ -35,3 +35,5 @@ grunt `Opening server for ... on port 9001.`
 npm install
 
 npm start
+
+You must be registered user before using API (Schema : users,posts,categories,comments)
