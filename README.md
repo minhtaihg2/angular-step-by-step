@@ -42,8 +42,9 @@ grunt `Opening server for ... on port 9001.`
 Schema for POSTMAN: 
 + users : username,password
 + category : Category,Description
-+ posts : title,content,slug,Author(ObjectId),Category(ObjectId),CreateAt
-+ comments : post(ObjectId),comments
++ posts : title,content,slug,Author(ObjectId - > _id from users),Category(ObjectId -> _id from category)
++ comments : post(ObjectId - > _id from posts),comments
 
 Browser : http://localhost:3000/Users -> show user mongodb
+
 (similar : posts,comments,category)
