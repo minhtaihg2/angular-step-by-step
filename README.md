@@ -39,10 +39,11 @@ grunt `Opening server for ... on port 9001.`
 
 #####You must be registered user before using API (Schema : users,posts,category,comments)
 
-Schema POSTMAN: 
+Schema for POSTMAN: 
 + users : username,password
 + category : Category,Description
 + posts : title,content,slug,Author(ObjectId),Category(ObjectId),CreateAt
 + comments : post(ObjectId),comments
 
-
+Browser : http://localhost:3000/Users -> show user mongodb
+(similar : posts,comments,category)
