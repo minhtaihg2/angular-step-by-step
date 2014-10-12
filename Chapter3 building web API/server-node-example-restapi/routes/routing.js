@@ -24,7 +24,6 @@ module.exports = function (app, collection) {
      app.delete('/' + dataTable[i] + '/delete/:id', collection[dataTable[i]].deleteId);
      }
 
-
   /*  app.get('/:tableName',collection.api);*/
 
 

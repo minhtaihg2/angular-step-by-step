@@ -37,7 +37,7 @@ grunt `Opening server for ... on port 9001.`
 
 * npm start
 
-#####You must be registered user before using API (Schema : users,posts,category,comments)
+you can login get token POSTMAN : localhost:3000/login
 
 Schema for POSTMAN: 
 + users : username,password

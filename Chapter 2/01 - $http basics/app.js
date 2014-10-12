@@ -1,29 +1,21 @@
 angular.module("myApp", [])
     .controller("myCtrl", ['$scope', '$http', '$log', function ($scope, $http, $log) {
-        /*  $http({
-         method : 'GET',
-         url : 'data.json'
-         }).success(function (data, status, headers, config) {
-         $scope.data = data;
-         // console.log('data :',data);
-         console.log(status); // status headers
-         console.log(config); // show object
-         }, function (data, status, headers, config) {
-         throw new Error('something went wrong!!!');
-         });*/
+
         $log.info('start...');
 
-       $scope.login = function (user) {
-            console.log(user);
+        $scope.login = function (user) {
+            $log.info(user);
             $http({
+                withCredentials: false,
                 method: 'POST',
-                url: 'http://localhost:3000/login',
-                data : user
+                url: 'http://127.0.0.1:3000/login',
+                data : JSON.stringify(user),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (data) {
                 $log.info(data);
             }, function (err) {
                 $log.info(err);
-            })
+            });
         };
 
     }]);
