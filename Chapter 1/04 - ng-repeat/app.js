@@ -1,6 +1,6 @@
 angular.module("myApp", [])
     .controller("myCtrl", ['$scope', function ($scope) {
-        $scope.date = new Date('2014-09-26 15:22:25');
+        $scope.date = new Date();
         console.log($scope.date);
         $scope.data = [
             {

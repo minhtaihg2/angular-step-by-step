@@ -4,12 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passport = require('passport');
+
 var url = require('url');
 var flash    = require('connect-flash');
 var session      = require('express-session');
 
-require('./config/passport')(passport);
+
 
 var User = require('./models/db-provider').Users;
 
@@ -29,10 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({ secret: 'ilovenodehanoivietnamvietname' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash());
+
 
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -41,7 +38,7 @@ app.all('*', function (req, res, next) {
     next();
 });
 
-require('./routes/routing')(app,passport,collection);
+require('./routes/routing')(app,collection);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
