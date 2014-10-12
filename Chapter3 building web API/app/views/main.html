@@ -9,26 +9,12 @@
             </div>
         </div>
         <div class="col-xs-8">
-            <marquee ng-show="offAds" behavior="scroll" direction="left"><h4 style="color: rgb(235, 28, 61);">Giảm giá sản phẩm Cần bán Dell Venue v1.0 <a ng-click="offAds = false">Tắt quảng cáo</a></h4></marquee>
+
         </div>
     </div>
     <div class="col-sm-6 col-xs-12 col-md-3" ng-repeat="item in listProducts | filter : search">
         <div class="thumbnail">
-            <img style="height: 136px" src="{{getUrlImages(item.listMedia)}}" alt="{{item.title}}">
 
-            <div class="caption">
-                <h4 ng-bind-html="item.title  | highlight:search" ></h4>
-                <h4><strong class="label label-danger">Giá : {{item.price | currencyVND : ""}} VNĐ</strong></h4>
-
-                <p style="height: 120px;
-overflow: hidden;" ng-bind-html="item.desc  | highlight:search"></p>
-
-                <p>
-                    <a class="btn btn-primary" role="button" ng-click="buy(item)">Mua <span ng-if="item.countCart > 0"
-                                                                                            class="badge">{{item.countCart}}</span></a>
-                    <a ng-click="goToPage('detail',{id : item._id})" class="btn btn-default" role="button">Chi tiết</a>
-                </p>
-            </div>
 
         </div>
     </div>

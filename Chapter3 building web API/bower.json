@@ -9,6 +9,7 @@
     "angular-resource": "~1.2.22",
     "underscore": "~1.6.0",
     "angular-collection": "~0.5.0",
-    "angular-animate": "~1.2.22"
+    "angular-animate": "~1.2.22",
+    "angular-local-storage": "~0.1.2"
   }
 }

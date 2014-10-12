@@ -12,5 +12,8 @@
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
     "jshint-stylish": "latest"
+  },
+  "dependencies": {
+    "angular-local-storage": "^0.1.2"
   }
 }

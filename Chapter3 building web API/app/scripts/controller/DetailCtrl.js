@@ -9,27 +9,6 @@ angular.module('myApp')
     .controller('DetailCtrl', ['$scope', '$stateParams', 'getData','dataStorage','$location','$state', function ($scope, $stateParams, getData,dataStorage,$location,$state) {
         var _id = $stateParams.id;
 
-        $scope.showEdit = false;
-        if (dataStorage.Products.size() > 0) {
-            $scope.item =  dataStorage.Products.get(_id);
-        }
-        else{
-            getData.getDataId('Products', _id).then(function (result) {
-                console.log('Data :', _id, result);
-                $scope.item = result;
-            });
-
-        }
-       /* var off = $scope.$on('$stateChangeStart', function(evt,  toState, toParams, fromState, fromParams) {
-            evt.preventDefault();
-            $state.params = toParams;
-            angular.copy($state.params, $stateParams);
-            off();
-        });
-        $location.path('chi-tiet/123').replace();*/
-
-        $scope.quickEdit = false;
-
         $scope.updateItem = function (item) {
 
             var bttn = document.getElementById('notification-trigger');

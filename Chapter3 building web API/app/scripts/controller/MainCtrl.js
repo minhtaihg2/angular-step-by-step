@@ -5,15 +5,19 @@
 'use strict'
 
 angular.module('myApp')
-    .controller('MainCtrl', ['$scope', '$http', 'appConfig', 'ServiceResource', 'getData', 'dataStorage', function ($scope, $http, appConfig, ServiceResource, getData, dataStorage) {
-        if (dataStorage.Products.size() > 0) {
-            $scope.listProducts = dataStorage.Products.all();
-        } else {
-            getData.getDataTable('Products').then(function (result) {
-                $scope.listProducts = result;
-                dataStorage.Products.addAll(result)
-            })
-        }
-        $scope.offAds = true;
+    .controller('MainCtrl', ['$scope', '$http', 'appConfig', 'ServiceResource', 'getData', 'dataStorage', 'auth', function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth) {
+        var userDemo = {
+            username: 'taipham.it',
+            password: '123456'
+        };
+
+        auth.login(userDemo, function (err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log('data : ', data);
+            }
+        });
 
     }])
