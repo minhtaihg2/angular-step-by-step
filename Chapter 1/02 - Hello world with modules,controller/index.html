@@ -9,20 +9,18 @@
 </head>
 
 <body ng-app="myApp">
-<div class="container">
+<div class="container" ng-controller="myCtrl">
 
     <div>
         <h3 class="text-center">AngularJS step by step</h3>
     </div>
     <hr/>
-    <div class="col-md-6" ng-controller="myCtrl">
+    <div class="col-md-6">
         <input class="form-control" ng-model="greeting" placeholder="Enter greeting!!!">
         Hello {{greeting}}
     </div>
     <div class="col-md-6">
-        <pre>
-            Đầu tiên tạo 1 modules tên "myApp" (modules có 2 tham số,tham số thứ nhất tên modules,tham số thứ 2 là mảng các module,bạn có thể để mảng rỗng nếu như không có modules nào được truyền vào).Sau đó chúng ta sẽ tạo 1 controller với tên là myCtrl (ban đầu chúng ta định ngĩa 1 Scope là greeting = "world" để hiển thị).Quay lại template thẻ body khai báo ng-app="myApp" và khai báo controller được sử dụng : ng-controller="myCtrl"
-        </pre>
+        get day : {{getDay || "false"}}
     </div>
 </div>
 </body>

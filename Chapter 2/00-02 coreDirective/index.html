@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <title>Angular step by step</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        tr.Red {
+            background-color: lightcoral;
+        }
+
+        tr.Green {
+            background-color: lightgreen;
+        }
+
+        tr.Blue {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="mainCtrl">
+
+
+    <div class="col-md-6" ng-repeat="(key,val) in settings"> <!-- ng-repeat 1 object-->
+        <h4>{{key}}</h4>
+        <div class="radio" ng-repeat="button in buttonNames">
+            <label>
+                <input type="radio" value="{{button}}" ng-model="settings[key]" />{{button}}  <!--gia tri model dc lay tu value-->
+            </label>
+        </div>
+    </div>
+
+    <hr/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Action</th>
+            <th>Done</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in todos" ng-class="settings.Rows"> <!--Class style for model-->
+            <td>{{$index + 1}}</td>
+            <td>{{item.action}}</td>
+            <td ng-style="{'background-color': settings.Columns}"> <!--style for model-->
+                {{item.complete}}
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
