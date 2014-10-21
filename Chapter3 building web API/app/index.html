@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/demo.css"/>
     <link rel="stylesheet" href="styles/ns-default.css"/>
     <link rel="stylesheet" href="styles/ns-style-other.css"/>
-
+    <link rel="stylesheet" href="styles/style.css"/>
 
 
     <script src="libs/angular/angular.min.js"></script>
@@ -35,21 +35,25 @@
     <script src="scripts/controller/DiscoveryCtrl.js"></script>
     <script src="scripts/controller/DetailCtrl.js"></script>
 </head>
-<body ng-app="myApp" style="background: url('images/bgcontainer.png')">
-<div class="container">
-    <div class="header-top">
-        <div class="container">
-            <div class="col-xs-3 text-center"><a style="color: #ffffff;text-decoration: none" ui-sref="index">AngularJS</a></div>
-            <div class="col-xs-5"></div>
-            <div class="col-xs-2" ng-if="totalCart > 0"> <p style="font-size: 15px">Tổng : {{totalCart | currencyVND : ""}} VNĐ </p></div>
-            <div class="col-xs-2 pull-right">
+<body ng-app="myApp">
+<div>
+    <div id="header">
 
-                <button class="btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> Giỏ hàng <span class="badge">{{lengthCart}}</span></button>
-            </div>
-        </div>
+        <ul id="menu">
+            <li><a href="index.html"><img src="images/but1.gif" alt="" width="64" height="42" /></a></li>
+            <li><a href="index2.html"><img src="images/but2.gif" alt="" width="108" height="42" /></a></li>
+            <li><a href="index2.html"><img src="images/but3.gif" alt="" width="93" height="42" /></a></li>
+            <li><a href="index2.html"><img src="images/but4.gif" alt="" width="101" height="42" /></a></li>
+            <li><a href="index2.html"><img src="images/but5.gif" alt="" width="86" height="42" /></a></li>
+            <li><a href="index2.html"><img src="images/but6.gif" alt="" width="102" height="42" /></a></li>
+        </ul>
+
     </div>
 
-    <div style="margin-top: 70px" class="row" ui-view></div>
+    <div ui-view></div>
+    <div id="footer">
+        <p>Copyright &copy;. All rights reserved. Design by <a href="http://freecsstemplates.in">Tai Pham</a></p>
+    </div>
 </div>
 
 </body>

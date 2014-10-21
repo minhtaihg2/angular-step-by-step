@@ -1,7 +1,7 @@
 angular-local-storage
 =====================
 
-An Angular module that gives you access to the browsers local storage, **v0.1.2**
+An Angular module that gives you access to the browsers local storage, **v0.1.3**
 
 [![Build Status](https://secure.travis-ci.org/grevory/angular-local-storage.png?branch=master)](https://travis-ci.org/grevory/)
 
@@ -223,18 +223,27 @@ Bind $scope key to localStorageService.
 myApp.controller('MainCtrl', function($scope, localStorageService) {
   //...
   localStorageService.set('property', 'oldValue');
-  var unbind = localStorageService.bind($scope, 'property');
+  $scope.unbind = localStorageService.bind($scope, 'property');
   
   //Test Changes
-  $scope.property = 'newValue1';
-  console.log(localStorageService.get('property')) // newValue1;
-  //unbind watcher
-  unbind();
-  $scope.property = 'newValue2';
-  console.log(localStorageService.get('property')) // newValue1;
+  $scope.update = function(val) {
+    $scope.property = val;
+    $timeout(function() {
+      alert("localStorage value: " + localStorageService.get('property'));
+    });
+  }
   //...
 });
 ```
+```html
+<div ng-controller="MainCtrl">
+  <p>{{property}}</p>
+  <input type="text" ng-model="lsValue"/>
+  <button ng-click="update(lsValue)">update</button>
+  <button ng-click="unbind()">unbind</button>
+</div>
+```
+
 ###deriveKey
 Return the derive key
 **Returns** `String`
@@ -248,7 +257,7 @@ myApp.controller('MainCtrl', function($scope, localStorageService) {
 });
 ```
 ###length
-Return localStorageService.length, ignore keys that not owned.
+Return localStorageService.length, ignore keys that not owned.  
 **Returns** `Number`
 ```js
 myApp.controller('MainCtrl', function($scope, localStorageService) {
