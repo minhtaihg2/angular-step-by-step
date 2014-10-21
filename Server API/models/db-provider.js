@@ -101,7 +101,7 @@
 
     postSchema.statics.getPopulation = function () {
         return [
-            ["Author", "username password"],
+            ["Author", "username"],
             ["Category", "*"]
         ];
     };
