@@ -9,7 +9,8 @@
     var userSchema,
         categorySchema,
         commentSchema,
-        postSchema;
+        postSchema,
+        SALT_WORK_FACTOR = 10;
 
     userSchema = new db.Schema({
         username: {
@@ -31,6 +32,7 @@
 
 
     // Bcrypt middleware on UserSchema
+
     userSchema.pre('save', function (next) {
         var user = this;
 
@@ -39,7 +41,7 @@
         bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
             if (err) return next(err);
 
-            bcrypt.hash(user.password, salt, function (err, hash) {
+            bcrypt.hash(user.password, salt,null, function (err, hash) {
                 if (err) return next(err);
                 user.password = hash;
                 next();
@@ -71,7 +73,7 @@
             type: 'String',
             required: true
         },
-        desc : {
+        desc: {
             type: 'String'
         },
         content: 'String',
@@ -126,7 +128,7 @@
             ref: 'Posts'
         },
         comments: 'String',
-        commentName : 'String',
+        commentName: 'String',
         CreateAt: {
             type: Date,
             default: Date.now

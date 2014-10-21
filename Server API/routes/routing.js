@@ -5,6 +5,7 @@
 var db = require('../models/db-provider').Users;
 var jwt = require('jsonwebtoken');
 
+
 module.exports = function (app, collection) {
 
     // crud table

@@ -17,9 +17,9 @@
 10 error You can get their info via:
 10 error     npm owner ls blog
 10 error There is likely additional logging output above.
-11 error System Darwin 13.4.0
+11 error System Darwin 14.0.0
 12 error command "node" "/usr/local/bin/npm" "start"
-13 error cwd /Users/taipham/Google Drive/nodejs-basic/node-express/blog
+13 error cwd /Users/taipham/Google Drive/Documents/DaoTao/angular-step-by-step/Server API
 14 error node -v v0.10.32
 15 error npm -v 1.4.28
 16 error code ELIFECYCLE
