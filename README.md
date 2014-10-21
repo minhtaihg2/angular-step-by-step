@@ -31,7 +31,7 @@ grunt `Opening server for ... on port 9001.`
 
 #### With server node : 
 
-* terminal : $ mongod
+
 
 * npm install
 
