@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    width: 1000px;
+
     height: 100%;
     position: relative;
     margin: 0 auto;
@@ -347,4 +347,11 @@ html > body {
     line-height: 0px;
     padding: 0px;
     font-size: 11px
+}
+.navbar {
+    border-radius: 0px;
+}
+
+.list h3{
+    font-family: fantasy;
 }

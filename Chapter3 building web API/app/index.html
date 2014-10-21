@@ -36,25 +36,49 @@
     <script src="scripts/controller/DetailCtrl.js"></script>
 </head>
 <body ng-app="myApp">
-<div>
-    <div id="header">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Web API</a>
+        </div>
 
-        <ul id="menu">
-            <li><a href="index.html"><img src="images/but1.gif" alt="" width="64" height="42" /></a></li>
-            <li><a href="index2.html"><img src="images/but2.gif" alt="" width="108" height="42" /></a></li>
-            <li><a href="index2.html"><img src="images/but3.gif" alt="" width="93" height="42" /></a></li>
-            <li><a href="index2.html"><img src="images/but4.gif" alt="" width="101" height="42" /></a></li>
-            <li><a href="index2.html"><img src="images/but5.gif" alt="" width="86" height="42" /></a></li>
-            <li><a href="index2.html"><img src="images/but6.gif" alt="" width="102" height="42" /></a></li>
-        </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">AngularJS</a></li>
+                <li><a href="#">Node</a></li>
+                <li><a href="#">About</a></li>
 
-    </div>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Đăng nhập</a></li>
+
+                        <li class="divider"></li>
+                        <li><a href="#">Tuỳ chọn</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
     <div ui-view></div>
     <div id="footer">
         <p>Copyright &copy;. All rights reserved. Design by <a href="http://freecsstemplates.in">Tai Pham</a></p>
     </div>
-</div>
 
 </body>
 </html>
