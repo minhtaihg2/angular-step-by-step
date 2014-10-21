@@ -42,8 +42,8 @@ you can login get token POSTMAN : localhost:3000/login
 Schema for POSTMAN: 
 + users : username,password
 + category : Category,Description
-+ posts : title,content,slug,Author(ObjectId - > _id from users),Category(ObjectId -> _id from category)
-+ comments : post(ObjectId - > _id from posts),comments
++ posts : title,content,slug,commentName,desc,Author(ObjectId - > _id from users),Category(ObjectId -> _id from category)
++ comments : post(ObjectId - > _id from posts),comments,
 
 Browser : http://localhost:3000/Users -> show user mongodb
 
