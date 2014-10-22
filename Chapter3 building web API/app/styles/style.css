@@ -52,7 +52,7 @@ html > body {
     float: left
 }
 
-#content {
+#content{
     overflow: hidden;
 }
 
@@ -60,7 +60,7 @@ html > body {
 
     background-position: top left;
     background-repeat: no-repeat;
-    width: 1000px;
+
     font-family: Tahoma, sans-serif;
     font-size: 13px;
     color: #151515;
@@ -118,6 +118,16 @@ html > body {
     text-decoration: none;
     color: rgb(168, 74, 74);
     cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(168, 74, 74);
+    cursor: pointer;
+}
+
+a:hover {
+    color: black;
 }
 
 .post h2 a {
@@ -365,4 +375,11 @@ html > body {
 
 .highlighted {
     background: yellow
+}
+
+.login{
+    width: 400px;
+    margin: 0 auto;
+    background: rgb(245, 245, 244);
+    padding: 30px;
 }

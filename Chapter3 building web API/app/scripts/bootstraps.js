@@ -26,19 +26,34 @@ angular.module('myApp', [
            /* controller : 'homeCtrl'*/
         })
         .state('index.category', {
-            url: '/category/:id',
+            url: '/category/:id/:name.html',
             templateUrl: 'views/category.html',
             controller: 'categoryCtrl'
         })
         .state('index.detail', {
-            url: '/chi-tiet/:id',
+            url: '/chi-tiet/:id.html',
             templateUrl: 'views/detail.html',
             controller: 'DetailCtrl'
+        })
+        .state('login',{
+            url : '/login',
+            templateUrl : 'views/login.html',
+            controller:'loginCtrl'
+        })
+
+        /*    Admin   */
+
+
+
+        .state('dashboard',{
+            url : '/dashboard',
+            templateUrl : 'views/dashboard.html',
+            controller:'dashCtrl'
         })
 }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage','amMoment', function ($rootScope, $state, appConfig, dataStorage,amMoment) {
 
     amMoment.changeLocale('vi'); // setup time local viet nam
-
+    $rootScope.$state = $state;
 
     $rootScope.goToPage = function (state, id) { // setup url go to page
         if (!id) {

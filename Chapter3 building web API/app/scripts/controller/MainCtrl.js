@@ -9,18 +9,26 @@ angular.module('myApp')
         function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth, $log) {
             $log.info('Start main...');
 
-            getData.getDataTable('posts').then(function (data) {
-               $scope.posts = data;
-                dataStorage.Posts.addAll(data);
-            }, function (err) {
-               // TODO if error
-            });
+            if (dataStorage.Posts.size() > 0) {
+                $scope.posts = dataStorage.Posts.all();
 
-            getData.getDataTable('category').then(function (data) {
-                $scope.categories = data;
-                dataStorage.Categories.addAll(data);
-            }, function (err) {
-                // TODO if error
-            });
+            } else {
+                getData.getDataTable('posts').then(function (data) {
+                    $scope.posts = data;
+                    dataStorage.Posts.addAll(data);
+                }, function (err) {
+                    // TODO if error
+                });
+            }
+            if (dataStorage.Categories.size() > 0) {
+                $scope.categories = dataStorage.Categories.all();
+            } else {
+                getData.getDataTable('category').then(function (data) {
+                    $scope.categories = data;
+                    dataStorage.Categories.addAll(data);
+                }, function (err) {
+                    // TODO if error
+                });
+            }
 
         }]);

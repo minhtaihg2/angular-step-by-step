@@ -54,7 +54,7 @@ module.exports = function (app, collection) {
 
                 var token = jwt.sign(user, 'authentication', { expiresInMinutes: 60 });
 
-                return res.json({token: token});
+                return res.json({token: token,user : user});
             });
 
         });

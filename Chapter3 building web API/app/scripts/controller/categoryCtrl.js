@@ -5,8 +5,8 @@
 'use strict'
 
 angular.module('myApp')
-    .controller('categoryCtrl', ['$scope', 'getData', '$stateParams', 'dataStorage',
-        function ($scope, getData, $stateParams, dataStorage) {
+    .controller('categoryCtrl', ['$scope', 'getData', '$stateParams', 'dataStorage','$location',
+        function ($scope, getData, $stateParams, dataStorage,$location) {
             var _id = $stateParams.id;
 
             var postForCategories = function (data) {

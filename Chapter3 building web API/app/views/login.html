@@ -1,0 +1,34 @@
+
+
+        <form class="form-inline text-center login" role="form">
+            <h1>Đăng nhập</h1>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" type="text" placeholder="Tài khoản" ng-model="user.username"/>
+                    </div>
+                </div>
+            <br/>
+            <br/>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" type="password" placeholder="Mật Khẩu" ng-model="user.password"/>
+                    </div>
+                </div>
+            <br/>
+            <div style="margin-top: 20px">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Check me out
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" ng-click="login(user)" class="btn btn-default">Sign in</button>
+                    </div>
+                </div>
+            </div>
+
+        </form><!-- form -->
