@@ -93,6 +93,14 @@
         CreateAt: {
             type: Date,
             default: Date.now
+        },
+        views: {
+            type: 'Number',
+            default: 0
+        },
+        totalComment : {
+            type: 'Number',
+            default: 0
         }
     }, {
         toObject: {
