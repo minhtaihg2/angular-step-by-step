@@ -5,19 +5,13 @@
 'use strict'
 
 angular.module('myApp')
-    .controller('MainCtrl', ['$scope', '$http', 'appConfig', 'ServiceResource', 'getData', 'dataStorage', 'auth', function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth) {
-        var userDemo = {
-            username: 'taipham.it',
-            password: '123456'
-        };
+    .controller('MainCtrl', ['$scope', '$http', 'appConfig', 'ServiceResource', 'getData', 'dataStorage', 'auth', '$log',
+        function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth, $log) {
+            $log.info('Start main...');
 
-        auth.login(userDemo, function (err, data) {
-            if (err) {
+            getData.getDataTable('posts').then(function (data) {
+               $scope.posts = data;
+            }, function (err) {
                 console.log(err);
-            }
-            else {
-                console.log('data : ', data);
-            }
-        });
-
-    }])
+            });
+        }]);

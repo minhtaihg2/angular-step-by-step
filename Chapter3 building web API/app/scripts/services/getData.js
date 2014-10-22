@@ -11,10 +11,9 @@ angular.module('myApp')
             getDataTable: function (tableName) {
                 var defer = $q.defer();
                 ServiceResource.get({table: tableName}, function (data) {
-                    var values = data.data;
+                    var values = data;
                     var dataBaseModel = [];
                     angular.forEach(values, function (item) {
-                        item.countCart = 0;
                         var item = new baseModel(tableName, item);
                         dataBaseModel.push(item);
                     })
@@ -28,8 +27,8 @@ angular.module('myApp')
                 var defer = $q.defer();
                 ServiceResource.get({table: tableName, id: id}, function (result) {
                     var item = result.data;
-                    item.countCart = 0;
-                    var data = new baseModel(tableName,item);
+
+                    var data = new baseModel(tableName, item);
                     defer.resolve(data);
                 }, function (err) {
                     defer.reject(err);

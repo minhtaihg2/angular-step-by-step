@@ -40,8 +40,7 @@ angular.module('myApp', [
     };
 
 }]).constant('appConfig', {
-    apiHost: 'http://chris-ictu.tk:8000',
-    mediaHost: 'http://vsoft.vn:1235'
+    apiHost: 'http://localhost:3000'
 }).filter('highlight', function ($sce) {
     return function (text, phrase) {
         if (phrase) text = text.replace(new RegExp('(' + phrase + ')', 'gi'),
