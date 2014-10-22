@@ -10,6 +10,7 @@
     "underscore": "~1.6.0",
     "angular-collection": "~0.5.0",
     "angular-animate": "~1.2.22",
-    "angular-local-storage": "~0.1.2"
+    "angular-local-storage": "~0.1.2",
+    "angular-moment": "~0.8.2"
   }
 }

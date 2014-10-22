@@ -6,6 +6,6 @@
 
 angular.module('myApp')
 
-    .controller('DiscoveryCtrl', ['$scope', function ($scope) {
-        console.log('Discovery Start :', true);
+    .controller('categoryCtrl', ['$scope', function ($scope) {
+        console.log('categoryCtrl Start :', true);
     }])

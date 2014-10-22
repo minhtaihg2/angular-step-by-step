@@ -1,52 +1,48 @@
+<div id="content" class="container">
+    <div id="posts" class="col-md-8">
+        <div class="post" ng-repeat="post in posts">
+            <h2><a>{{post.title}}</a></h2>
 
-    <div id="content" class="container">
-        <div id="posts" class="col-md-8">
-            <div class="post">
-                <h2>Retro Photos</h2>
-                <div><span class="date">Mar 18th</span><span class="categories">in: Photos, Retro</span></div>
-                <div class="description">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipi scing elit.Mauris urna urna, varius et, interdum a, tincidunt quis, libero. Aenean sit amturpis. Maecenas hendrerit, massa ac laoreet iaculipede mnisl ullamcorpermassa, cosectetuer feipsum eget pede. Proin nunc. Donec nonummy, tellus er sodales enim, in tincidunmauris in odio. Massa ac laoreet iaculipede nisl ullamcorpermassa, ac consectetuer feipsum eget pede.  Proin nunc. Donec massa. Nulla pulvinar, nisl ac convallis nonummy, tellus eros sodales enim, in tincidunt mauris in odio.  massa ac laoreet iaculipede niorpermassa,consectetuer feipsum eget pede. Proin nunc. Donec massa. Nulla pulvinar, nisl ac convallis nonummy, tellus eros sodales enim, in tincidunt mauris in odio. Lorem ipsum dolor sit amet, consectetuer adipi scing elit.Mauris urna urna, varius et, interdum a, tincidunt quis, libero. Aenean sit amturpis. </p>
-                </div>
-                <p class="comments">Comments - <a href="#">17</a>   <span>|</span>   <a href="index2.html">Continue Reading</a></p>
+            <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Views: {{post.views}}</span></div>
+            <div class="description">
+                <p>
+                    {{post.desc}}
+                </p>
             </div>
-            <div class="post">
-                <h2>Original Wordpress Themes</h2>
-                <div><span class="date">Mar 12th</span><span class="categories">in: Design, Themes</span></div>
-                <div class="description">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipi scing elit.Mauris urna urna, varius et, interdum a, tincidunt quis, libero. Aenean sit amturpis. Maecenas hendrerit, massa ac laoreet iaculipede mnisl ullamcorpermassa, cosectetuer feipsum eget pede. Proin nunc. Donec nonummy, tellus er sodales enim, in tincidunmauris in odio. Massa ac laoreet iaculipede nisl ullamcorpermassa, ac consectetuer feipsum eget pede.  Proin nunc. Donec massa. Nulla pulvinar, nisl ac convallis nonummy, tellus eros sodales enim, in tincidunt mauris in odio.  massa ac laoreet iaculipede niorpermassa,consectetuer feipsum eget pede. Proin nunc. Donec massa. Nulla pulvinar, nisl ac convallis nonummy, tellus eros sodales enim, in tincidunt mauris in odio. Lorem ipsum dolor sit amet, consectetuer adipi scing elit.Mauris urna urna, varius et, interdum a, tincidunt quis, libero. Aenean sit amturpis. </p>
-                </div>
-                <p class="comments">Comments - <a href="#">17</a>   <span>|</span>   <a href="index2.html">Continue Reading</a></p>
-            </div>
-        </div>
-        <div id="sidebar" class="col-md-4">
-            <div class="list">
-                <h3>Category</h3>
-                <ul>
-                    <li><a href="#">animation</a></li>
-                    <li><a href="#">magazines</a></li>
-                    <li><a href="#">architecture</a></li>
-                    <li><a href="#">news</a></li>
-                    <li><a href="#">art</a></li>
-                    <li><a href="#">photography</a></li>
-                    <li><a href="#">blogs</a></li>
-                    <li><a href="#">product design</a></li>
-
-                </ul>
-              <h3>Comments</h3>
-                <ul>
-                    <li><a href="#">January</a></li>
-                    <li><a href="#">July</a></li>
-                    <li><a href="#">February</a></li>
-                    <li><a href="#">August</a></li>
-                    <li><a href="#">March</a></li>
-                    <li><a href="#">September</a></li>
-
-                </ul>
-            </div>
+            <p class="comments">Comments - <a href="#">{{post.totalComment}}</a> <span>|</span> <a href="index2.html">Continue
+                Reading</a></p>
         </div>
     </div>
+    <div id="sidebar" class="col-md-4">
+        <div class="list">
+            <h3>Category</h3>
+            <ul>
+                <li><a href="#">animation</a></li>
+                <li><a href="#">magazines</a></li>
+                <li><a href="#">architecture</a></li>
+                <li><a href="#">news</a></li>
+                <li><a href="#">art</a></li>
+                <li><a href="#">photography</a></li>
+                <li><a href="#">blogs</a></li>
+                <li><a href="#">product design</a></li>
+
+            </ul>
+            <h3>Comments</h3>
+            <ul>
+                <li><a href="#">January</a></li>
+                <li><a href="#">July</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">August</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">September</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
 
 <style>
-    .highlighted { background: yellow }
+    .highlighted {
+        background: yellow
+    }
 </style>

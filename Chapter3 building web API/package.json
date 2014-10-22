@@ -14,6 +14,7 @@
     "jshint-stylish": "latest"
   },
   "dependencies": {
-    "angular-local-storage": "^0.1.2"
+    "angular-local-storage": "^0.1.2",
+    "angular-moment": "^0.8.2"
   }
 }
