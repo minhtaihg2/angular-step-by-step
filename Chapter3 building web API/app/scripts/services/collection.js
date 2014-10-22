@@ -7,6 +7,8 @@
 angular.module('myApp')
     .service('dataStorage', ['$collection', function ($collection) {
         return {
-            Products: $collection.getInstance()
+            Posts: $collection.getInstance(),
+            Categories: $collection.getInstance(),
+            Comments: $collection.getInstance()
         };
     }]);

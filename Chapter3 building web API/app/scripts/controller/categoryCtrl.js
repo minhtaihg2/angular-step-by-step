@@ -5,7 +5,22 @@
 'use strict'
 
 angular.module('myApp')
+    .controller('categoryCtrl', ['$scope', 'getData', '$stateParams',
+        function ($scope, getData, $stateParams) {
+            var _id = $stateParams.id;
+            $scope.postForCategory = [];
+            getData.getDataId('category', _id).then(function (data) {
+                $scope.categories = data;
+            });
 
-    .controller('categoryCtrl', ['$scope', function ($scope) {
-        console.log('categoryCtrl Start :', true);
-    }])
+            getData.getDataTable('posts').then(function (data) {
+
+                var length = data.length;
+                for (var i = 0; i < length; i++) {
+                    if (data[i].Category._id == _id) {
+                        $scope.postForCategory.push(data[i]);
+                    }
+                }
+
+            });
+        }])

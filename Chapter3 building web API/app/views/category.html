@@ -1,1 +1,19 @@
-<h4>Category</h4>
+<div>
+    <h4>Chuyên mục : {{categories.Category}}</h4>
+    <hr/>
+    <div class="post" ng-repeat="post in postForCategory">
+        <h2><a ng-click="goToPage('index.detail',{id : post._id})">{{post.title}}</a></h2>
+
+        <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Views: {{post.views}}</span>
+        </div>
+        <div class="description">
+            <p>
+                {{post.desc}}
+            </p>
+        </div>
+        <p class="comments">Comments - <a href="#">{{post.totalComment}}</a> <span>|</span> <a href="index2.html">Continue
+            Reading</a></p>
+    </div>
+</div>
+
+

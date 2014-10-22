@@ -28,8 +28,6 @@ angular.module('myApp')
                 ServiceResource.get({table: tableName, id: id}, function (result) {
 
                     var item = result[0];
-                    console.log(item);
-
                     var data = new baseModel(tableName, item);
                     defer.resolve(data);
                 }, function (err) {

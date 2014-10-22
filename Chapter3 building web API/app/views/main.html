@@ -1,4 +1,4 @@
-<div id="content" class="container">
+<div id="content">
     <div id="posts" class="col-md-8">
       <ui-view></ui-view>
     </div>
@@ -6,15 +6,7 @@
         <div class="list">
             <h3>Category</h3>
             <ul>
-                <li><a href="#">animation</a></li>
-                <li><a href="#">magazines</a></li>
-                <li><a href="#">architecture</a></li>
-                <li><a href="#">news</a></li>
-                <li><a href="#">art</a></li>
-                <li><a href="#">photography</a></li>
-                <li><a href="#">blogs</a></li>
-                <li><a href="#">product design</a></li>
-
+                <li ng-repeat="category in categories"><a ng-click="goToPage('index.category', {id : category._id})">{{category.Category}}</a></li>
             </ul>
             <h3>Comments</h3>
             <ul>

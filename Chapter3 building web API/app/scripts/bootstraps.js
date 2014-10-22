@@ -25,13 +25,13 @@ angular.module('myApp', [
             templateUrl : 'views/home.html'
            /* controller : 'homeCtrl'*/
         })
-        .state('category', {
-            url: '/category',
+        .state('index.category', {
+            url: '/category/:id',
             templateUrl: 'views/category.html',
             controller: 'categoryCtrl'
         })
         .state('index.detail', {
-            url: '/detail/:id',
+            url: '/chi-tiet/:id',
             templateUrl: 'views/detail.html',
             controller: 'DetailCtrl'
         })
