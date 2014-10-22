@@ -6,5 +6,5 @@
 angular.module('myApp')
     .controller('dashCtrl', ['$scope', '$http', 'appConfig', 'ServiceResource', 'getData', 'dataStorage', 'auth', '$log',
         function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth, $log) {
-            console.log('Dashboard');
+            console.log('Login : ', auth.isLogin(), auth.getUser());
         }]);

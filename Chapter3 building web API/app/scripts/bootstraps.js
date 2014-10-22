@@ -47,7 +47,7 @@ angular.module('myApp', [
 
         .state('dashboard',{
             url : '/dashboard',
-            templateUrl : 'views/dashboard.html',
+            templateUrl : 'views/admin/dashboard.html',
             controller:'dashCtrl'
         })
 }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage','amMoment', function ($rootScope, $state, appConfig, dataStorage,amMoment) {
