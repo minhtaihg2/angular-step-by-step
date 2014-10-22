@@ -45,6 +45,6 @@ Schema for POSTMAN:
 + posts : title,content,slug,commentName,desc,Author(ObjectId - > _id from users),Category(ObjectId -> _id from category)
 + comments : post(ObjectId - > _id from posts),comments,
 
-Browser : http://localhost:3000/Users -> show user mongodb
+Browser : http://localhost:3000/Users -> show user
 
 (similar : posts,comments,category)
