@@ -12,22 +12,27 @@ angular.module('myApp', [
     'LocalStorageModule',
     'angularMoment'  // Moment.JS directives for Angular.JS
 ]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
-    $urlRouterProvider.otherwise('/index.html');
-    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/home');
     $stateProvider
         .state('index', {
             controller: 'MainCtrl',
-            url: '/index.html',
+            abstract : true,
+            url: '',
             templateUrl: 'views/main.html'
         })
+        .state('index.home',{
+            url : '/home',
+            templateUrl : 'views/home.html'
+           /* controller : 'homeCtrl'*/
+        })
         .state('category', {
-            url: '/category.html',
+            url: '/category',
             templateUrl: 'views/category.html',
             controller: 'categoryCtrl'
         })
-        .state('detail', {
+        .state('index.detail', {
             url: '/detail/:id',
-            templateUrl: 'views/detail-products.html',
+            templateUrl: 'views/detail.html',
             controller: 'DetailCtrl'
         })
 }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage','amMoment', function ($rootScope, $state, appConfig, dataStorage,amMoment) {

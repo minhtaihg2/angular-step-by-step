@@ -40,7 +40,7 @@ var crud = function () {
                         var limitItem = req.query.limit;
                     }
 
-                    model.find().limit(limitItem).exec(function (err, result) {
+                    model.find().limit(limitItem).sort({ CreateAt: -1}).exec(function (err, result) {
 
                         if (err) {
                             res.json(err);
@@ -50,23 +50,25 @@ var crud = function () {
                                 var promise = model.populate(result, opts);
                                 promise.then(function (err, data) {
                                     res.json(result);
+
                                 }).end();
                             } else {
                                 res.json(result);
+
                             }
                         }
                     });
                 } else {
 
                     model.findById(_id, function (err, result) {
-
-
+                       var dataID = [];
                         if (err) {
                             res.json(err);
                             console.log('err : ', err);
                         } else {
                             model.populate(result, opts, function (err, data) {
-                                res.json(data);
+                                dataID.push(result);
+                                res.json(dataID);
                             })
                         }
                     })

@@ -26,7 +26,9 @@ angular.module('myApp')
             getDataId: function (tableName, id) {
                 var defer = $q.defer();
                 ServiceResource.get({table: tableName, id: id}, function (result) {
-                    var item = result.data;
+
+                    var item = result[0];
+                    console.log(item);
 
                     var data = new baseModel(tableName, item);
                     defer.resolve(data);

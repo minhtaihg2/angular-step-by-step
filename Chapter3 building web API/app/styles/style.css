@@ -116,6 +116,8 @@ html > body {
 
 .post h2 a:hover {
     text-decoration: none;
+    color: rgb(168, 74, 74);
+    cursor: pointer;
 }
 
 .post h2 a {
@@ -363,4 +365,7 @@ html > body {
 
 .list h3 {
     font-family: fantasy;
+}
+.highlighted {
+    background: yellow
 }

@@ -1,17 +1,6 @@
 <div id="content" class="container">
     <div id="posts" class="col-md-8">
-        <div class="post" ng-repeat="post in posts">
-            <h2><a>{{post.title}}</a></h2>
-
-            <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Views: {{post.views}}</span></div>
-            <div class="description">
-                <p>
-                    {{post.desc}}
-                </p>
-            </div>
-            <p class="comments">Comments - <a href="#">{{post.totalComment}}</a> <span>|</span> <a href="index2.html">Continue
-                Reading</a></p>
-        </div>
+      <ui-view></ui-view>
     </div>
     <div id="sidebar" class="col-md-4">
         <div class="list">
@@ -40,9 +29,3 @@
         </div>
     </div>
 </div>
-
-<style>
-    .highlighted {
-        background: yellow
-    }
-</style>
