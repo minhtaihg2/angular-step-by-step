@@ -11,12 +11,14 @@ angular.module('myApp')
 
             getData.getDataTable('posts').then(function (data) {
                $scope.posts = data;
+                dataStorage.Posts.addAll(data);
             }, function (err) {
                // TODO if error
             });
 
             getData.getDataTable('category').then(function (data) {
                 $scope.categories = data;
+                dataStorage.Categories.addAll(data);
             }, function (err) {
                 // TODO if error
             });

@@ -12,12 +12,15 @@ angular.module('myApp')
 
 
             console.log('_id :', _id);
-
-            getData.getDataId('posts', _id).then(function (data) {
-                $scope.post = data;
-            }, function (err) {
-                console.log(err);
-            });
+            if (dataStorage.Posts.size() > 0) {
+                $scope.post = dataStorage.Posts.get(_id);
+            } else {
+                getData.getDataId('posts', _id).then(function (data) {
+                    $scope.post = data;
+                }, function (err) {
+                    console.log(err);
+                });
+            }
 
             $scope.updateItem = function (item) {
 
