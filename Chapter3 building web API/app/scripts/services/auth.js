@@ -16,6 +16,23 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
             };
 
         return {
+            setHeaderToken: function () {
+                var token = this.getToken();
+
+                if (token) {
+                    _setHeaderToken(token);
+                } else {
+                    _setHeaderToken(null);
+                }
+            },
+            getHeaderToken: function () {
+                var token = $http.defaults.headers.common[_authorizationKey];
+                if (token) {
+                    return token;
+                } else {
+                    return null;
+                }
+            },
             pendingStateChange: null,
             resolvePendingState: function (httpPromise) {
 
@@ -73,8 +90,11 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
                     }
                 )
             },
-            logout: {
-                //TODO clear token,user,role
+            logout: function () {
+                _clearHeaderToken();
+                localStorageService.set(_userKey, null);
+                localStorageService.set(_role, null);
+                localStorageService.set(_token, null);
             },
             getBitMask: 0,
             getUser: function () {
