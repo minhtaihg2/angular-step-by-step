@@ -5,7 +5,7 @@
     <div class="form-group">
         <div class="input-group">
             <div class="input-group-addon">@</div>
-            <input class="form-control" type="text" placeholder="Tài khoản" ng-model="user.username"/>
+            <input class="form-control" type="email" placeholder="Email" ng-model="user.email"/>
         </div>
     </div>
     <br/>
@@ -28,8 +28,15 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" ng-click="login(user)" class="btn btn-default">Sign in</button>
+                <button type="submit" ng-click="register(user)" class="btn btn-default">Register</button>
+
             </div>
         </div>
+    </div>
+    <hr/>
+    <div>
+        <button style="width: 100%" class="btn btn-danger" ng-click="authenticate('google')">Sign in with Google</button>
+        <button style="width: 100%;margin-top: 5px" class="btn btn-primary" ng-click="authenticate('facebook')">Sign in with Facebook</button>
     </div>
 
 </form><!-- form -->

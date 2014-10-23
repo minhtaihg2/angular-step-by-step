@@ -10,9 +10,10 @@ angular.module('myApp', [
     'ngAnimate',
     'ngCollection',
     'LocalStorageModule',
-    'angularMoment'  // Moment.JS directives for Angular.JS
-]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    'angularMoment',  // Moment.JS directives for Angular.JS
+    'satellizer'
+]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider) {
         $urlRouterProvider.otherwise('/home');
         $stateProvider
             .state('index', {
@@ -59,8 +60,55 @@ angular.module('myApp', [
                 accessLevel: window.userCan.accessAdmin
             });
 
-    }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log',
-    function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log) {
+
+        // Social
+
+
+        $authProvider.loginOnSignup = true;
+        $authProvider.loginRedirect = '/home';
+        $authProvider.logoutRedirect = '/home';
+        $authProvider.signupRedirect = '/home';
+        $authProvider.loginUrl = 'http://localhost:3000/auth/login';
+        $authProvider.signupUrl = 'http://localhost:3000/auth/signup';
+        $authProvider.loginRoute = 'http://localhost:3000/login';
+        $authProvider.signupRoute = 'http://localhost:3000/signup';
+        $authProvider.tokenName = 'token';
+        $authProvider.tokenPrefix = 'satellizer'; // Local storage name prefix
+        $authProvider.unlinkUrl = 'http://localhost:3000/auth/unlink/';
+
+        $authProvider.google({
+            clientId: '643552307041-cqbbju17fshu7q3ch6r0lrls1gmqqppv.apps.googleusercontent.com'
+        });
+        $authProvider.facebook({
+            clientId: '873238899366421'
+        });
+        $authProvider.google({
+            url: 'http://localhost:3000/auth/google',
+            authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+            redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
+            scope: ['profile', 'email'],
+            scopePrefix: 'openid',
+            scopeDelimiter: ' ',
+            requiredUrlParams: ['scope'],
+            optionalUrlParams: ['display'],
+            display: 'popup',
+            type: '2.0',
+            popupOptions: { width: 452, height: 633 }
+        });
+        $authProvider.facebook({
+            url: 'http://localhost:3000/auth/facebook',
+            authorizationEndpoint: 'https://www.facebook.com/dialog/oauth',
+            redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host + '/',
+            scope: 'email',
+            scopeDelimiter: ',',
+            requiredUrlParams: ['display', 'scope'],
+            display: 'popup',
+            type: '2.0',
+            popupOptions: { width: 481, height: 269 }
+        });
+
+    }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log','$auth',
+    function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log,$auth) {
         $rootScope.$on('$stateChangeStart', function (event, to, toParams, fromState) {
 
             if (auth.getUser() === null) {
@@ -77,9 +125,9 @@ angular.module('myApp', [
                 $state.go('login');
             }
 
-            if(auth.getToken() == null){
+            if (auth.getToken() == null) {
                 //TODO action has method token
-            }else{
+            } else {
                 $rootScope.userLogin.isLogin = true;
                 $rootScope.userLogin.user = auth.getUser();
             }
@@ -89,9 +137,8 @@ angular.module('myApp', [
         });
 
         $rootScope.logout = function () {
-            auth.logout();
             $rootScope.userLogin.isLogin = false;
-            $state.go('index.home');
+            $auth.logout();
         };
 
         amMoment.changeLocale('vi'); // setup time local viet nam

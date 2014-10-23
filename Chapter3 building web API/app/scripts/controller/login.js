@@ -4,12 +4,21 @@
 
 
 angular.module('myApp')
-    .controller('loginCtrl', ['$scope', 'appConfig', 'getData', 'dataStorage', 'auth', '$log', '$state', '$rootScope',
-        function ($scope, appConfig, getData, dataStorage, auth, $log, $state, $rootScope) {
+    .controller('loginCtrl', ['$scope', 'appConfig', 'getData', 'dataStorage', 'auth', '$log', '$state', '$rootScope', '$auth',
+        function ($scope, appConfig, getData, dataStorage, auth, $log, $state, $rootScope, $auth) {
 
+            $scope.authenticate = function (provider) {
+                $auth.authenticate(provider);
+            };
 
             $scope.login = function (user) {
-                auth.login(user, function (err, userData) {
+
+                $auth.login({
+                    email: user.email,
+                    password: user.password
+                });
+
+              /*  auth.login(user, function (err, userData) {
                     if (err) {
                         $scope.user = {};
                         $scope.notify = 'Username or password false';
@@ -21,6 +30,14 @@ angular.module('myApp')
                         }
                     }
 
-                })
-            }
+                })*/
+            };
+
+            $scope.register = function (user) {
+                $auth.signup({
+                    email: user.email,
+                    password: user.password
+                });
+            };
+
         }]);

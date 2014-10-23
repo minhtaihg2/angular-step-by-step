@@ -6,11 +6,57 @@
 (function (dbProvider) {
     var db = require('../config/config');
     var bcrypt = require('bcrypt-nodejs');
+    var bcrypt1 = require('bcryptjs');
     var userSchema,
         categorySchema,
         commentSchema,
         postSchema,
+        userSchema2,
         SALT_WORK_FACTOR = 10;
+
+
+
+
+    var userSchema2 = new db.Schema({
+        email: { type: String, unique: true, lowercase: true },
+        role : {
+            type: 'String',
+            default : 'user'
+        },
+        password: { type: String, select: false },
+        displayName: String,
+        facebook: String,
+        foursquare: String,
+        google: String,
+        github: String,
+        linkedin: String,
+        twitter: String
+    });
+
+    userSchema2.pre('save', function(next) {
+        var user = this;
+        if (!user.isModified('password')) {
+            return next();
+        }
+        bcrypt1.genSalt(10, function(err, salt) {
+            bcrypt1.hash(user.password, salt, function(err, hash) {
+                user.password = hash;
+                next();
+            });
+        });
+    });
+
+    userSchema2.methods.comparePassword = function(password, done) {
+        bcrypt1.compare(password, this.password, function(err, isMatch) {
+            done(err, isMatch);
+        });
+    };
+
+/*
+* ============================ DB BASE ============
+* */
+
+
 
     userSchema = new db.Schema({
         username: {
@@ -159,11 +205,13 @@
     var Categories = db.mongoose.model('Categories', categorySchema);
     var Posts = db.mongoose.model('Posts', postSchema);
     var Comments = db.mongoose.model('Comments', commentSchema);
+    var userSchema2 = db.mongoose.model('userSchema2', userSchema2);
 
     dbProvider.Users = Users;
     dbProvider.Categories = Categories;
     dbProvider.Posts = Posts;
     dbProvider.Comments = Comments;
+    dbProvider.userSchema2 = userSchema2;
 
 
     /* dbProvider.Posts.find({}).populate('Category', {}).populate('Author', {}).exec();*/

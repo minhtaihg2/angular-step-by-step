@@ -7,11 +7,13 @@
  var Post = require('./db-provider').Posts;
  var Category = require('./db-provider').Categories;
  var Comment = require('./db-provider').Comments;
+ var userSchema2 = require('./db-provider').userSchema2;
 
  collection.users = require('./crud')(User);
  collection.posts = require('./crud')(Post);
  collection.category = require('./crud')(Category);
  collection.comments = require('./crud')(Comment);
+ collection.userSchema2 = require('./crud')(userSchema2);
 
  module.exports = collection;
 
