@@ -10,24 +10,22 @@ module.exports = function (app, collection) {
 
     // crud table
 
-     var dataTable = [
-     'users',
-     'category',
-     'posts',
-     'comments'
-     ];
+    var dataTable = [
+        'users',
+        'category',
+        'posts',
+        'comments'
+    ];
 
-     for (var i = 0; i < dataTable.length; i++) {
-     app.get('/' + dataTable[i] , collection[dataTable[i]].read);
-     app.post('/' + dataTable[i] + '/create', collection[dataTable[i]].create);
-     app.get('/' + dataTable[i] + '/:id', collection[dataTable[i]].read);
-     app.put('/' + dataTable[i] + '/update/:id', collection[dataTable[i]].update);
-     app.delete('/' + dataTable[i] + '/delete/:id', collection[dataTable[i]].deleteId);
-     }
+    for (var i = 0; i < dataTable.length; i++) {
+        app.get('/' + dataTable[i], collection[dataTable[i]].read);
+        app.post('/' + dataTable[i] + '/create', collection[dataTable[i]].create);
+        app.get('/' + dataTable[i] + '/:id', collection[dataTable[i]].read);
+        app.put('/' + dataTable[i] + '/update/:id', collection[dataTable[i]].update);
+        app.delete('/' + dataTable[i] + '/delete/:id', collection[dataTable[i]].deleteId);
+    }
 
-  /*  app.get('/:tableName',collection.api);*/
-
-
+    /*  app.get('/:tableName',collection.api);*/
 
 
     app.get('/', function (req, res) {
@@ -51,10 +49,16 @@ module.exports = function (app, collection) {
                     console.log("Attempt failed to login with " + user.username);
                     return res.send(401);
                 }
-
                 var token = jwt.sign(user, 'authentication', { expiresInMinutes: 60 });
 
-                return res.json({token: token,user : user});
+                var bitMask;
+                if (user.role == 'user') {
+                    bitMask = 1;
+                } else if (user.role == 'admin') {
+                    bitMask = 2;
+                }
+                user.bitMask = 1;
+                return res.json({token: token, user: user, bitMask: bitMask});
             });
 
         });

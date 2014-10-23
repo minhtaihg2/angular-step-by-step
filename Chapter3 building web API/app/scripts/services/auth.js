@@ -16,6 +16,45 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
             };
 
         return {
+            pendingStateChange: null,
+            resolvePendingState: function (httpPromise) {
+
+                var checkUser = $q.defer();
+                var me = this;
+                var pendingState = me.pendingStateChange;
+
+                httpPromise
+                    .success(function (data) {
+                        if (data.success) {
+                            me.setUser(data.user);
+
+                            if (pendingState.to.accessLevel === undefined || me.authorize(pendingState.to.accessLevel)) {
+                                checkUser.resolve();
+                            } else {
+
+                                checkUser.reject('unauthorized'); // may be 403
+                            }
+                        } else {
+                            checkUser.reject('401');
+                        }
+                    })
+                    .error(function (err, status, headers, config) {
+                        checkUser.reject(status.toString());
+                    });
+
+                me.pendingStateChange = null;
+                return checkUser.promise;
+            },
+            authorize: function (accessLevel) {
+
+                var userRole = this.getRole();
+                if (null !== userRole) {
+                    var result = accessLevel.bitMask <= this.getBitMask;
+                    return result;
+                } else {
+                    return false;
+                }
+            },
             login: function (user, cb) {
                 var me = this;
                 $http({
@@ -27,12 +66,17 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
                         me.setToken(data.token);
                         me.setRole(data.user.role);
                         me.setUser(data.user);
+                        me.getBitMask = data.bitMask;
                         cb(null, data);
                     }, function (err) {
                         cb(err, null)
                     }
                 )
             },
+            logout: {
+                //TODO clear token,user,role
+            },
+            getBitMask: 0,
             getUser: function () {
                 return localStorageService.get(_userKey);
             },
@@ -40,7 +84,10 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
                 localStorageService.set(_userKey, user);
             },
             getRole: function () {
-                return localStorageService.get(_role);
+                if (!!localStorageService.get(_role)) {
+                    return localStorageService.get(_role);
+                }
+                return null;
             },
             setRole: function (role) {
                 localStorageService.set(_role, role);
