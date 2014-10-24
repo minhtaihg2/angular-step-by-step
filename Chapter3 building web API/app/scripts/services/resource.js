@@ -4,12 +4,13 @@
 
 angular.module('myApp')
     .factory('ServiceResource', ['$resource', 'appConfig', function ($resource, appConfig) {
-        return $resource(appConfig.apiHost + '/:table/:id',
+        return $resource(appConfig.apiHost + '/:table/:action/:id',
             {
                 table: '@table',
+                action: '@action',
                 id: '@id'
             }
-            , { 'get': {method: 'GET',params: {},isArray: true},
+            , { 'get': {method: 'GET', params: {}, isArray: true},
                 'save': {method: 'POST', params: {}},
                 'query': {method: 'GET', isArray: true},
                 'put': {method: 'PUT', params: {}},

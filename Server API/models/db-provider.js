@@ -185,8 +185,12 @@
             type: db.ObjectId,
             ref: 'Posts'
         },
+        Author: {
+            ref: 'userSchema2',
+            type: db.ObjectId
+        },
         comments: 'String',
-        commentName: 'String',
+        title: 'String',
         CreateAt: {
             type: Date,
             default: Date.now
@@ -195,7 +199,8 @@
 
     commentSchema.statics.getPopulation = function () {
         return [
-            ["post" , "title content slug"]
+            ["post" , "title slug"],
+            ["Author", "email displayName"]
         ];
     };
 

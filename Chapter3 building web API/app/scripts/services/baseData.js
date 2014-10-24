@@ -4,11 +4,13 @@
 
 angular.module('myApp')
     .factory('baseModel', ['ServiceResource', function (ServiceResource) {
-        var baseModel = function (tableName, data) {
+        var baseModel = function (tableName, data, action) {
             this.omitFiled = ['omitFiled', 'busy', 'tableName'];
             this.tableName = tableName;
             this.busy = false;
-
+            if (action) {
+                this.action = action;
+            }
             var me = this;
             angular.extend(me, data)
         };
@@ -20,13 +22,13 @@ angular.module('myApp')
             }
             var saveData = window._.omit(me, me.omitFiled);
             me.busy = true;
-            ServiceResource.save({table: me.tableName}, saveData, function (result) {
-                if (result.success) {
+            ServiceResource.save({table: me.tableName, action: me.action }, saveData, function (result) {
+
+                if (result) {
                     me.busy = false;
-                    console.log('save :', result);
                 }
-                if (callback) {
-                    callback(result.success ? null : result.message, result.data)
+                if (callback && result) {
+                    callback(null, result)
                 }
             })
 
@@ -42,8 +44,8 @@ angular.module('myApp')
             var updateData = window._.omit(me, me.omitFiled);
 
             me.busy = true;
-            ServiceResource.put({table: me.tableName,id : me.id}, updateData, function (result) {
-                console.log('result update :',result);
+            ServiceResource.put({table: me.tableName, id: me.id}, updateData, function (result) {
+                console.log('result update :', result);
                 me.busy = false;
                 if (callback) {
                     callback(result.success ? null : result.message, result.data)

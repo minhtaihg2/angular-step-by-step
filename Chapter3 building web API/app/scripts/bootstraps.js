@@ -27,7 +27,7 @@ angular.module('myApp', [
             .state('index.home', {
                 url: '/home',
                 templateUrl: 'views/home.html',
-                 controller : 'homeCtrl'
+                controller: 'homeCtrl'
             })
             .state('index.category', {
                 url: '/category/:id/:name.html',
@@ -119,10 +119,11 @@ angular.module('myApp', [
             popupOptions: { width: 481, height: 269 }
         });
 
-    }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log', '$auth','$http',
-    function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log, $auth,$http) {
+    }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log', '$auth', '$http',
+    function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log, $auth, $http) {
         $rootScope.$state = $state;
-        $rootScope.$on('$stateChangeStart', function (event, to, toParams, fromState) {
+        var lastState;
+        $rootScope.$on('$stateChangeStart', function (event, to, toParams, fromState, from) {
 
             if (auth.getUser() === null) {
                 auth.pendingStateChange = {
@@ -147,11 +148,11 @@ angular.module('myApp', [
             auth.logout();
         };
 
-        if($auth.isAuthenticated()){
-            console.log('user has login!!!');
+        if ($auth.isAuthenticated()) {
+
             $http.get('http://localhost:3000/api/me').success(function (data) {
                 $rootScope.userData = data;
-                console.log(data);
+
             }).error(function (err) {
                 console.log(err);
             })
