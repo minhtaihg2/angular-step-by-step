@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="libs/angular-motion/dist/angular-motion.min.css"/>
+    <link rel="stylesheet" href="libs/angular-loading/angular-loading.css"/>
     <link rel="stylesheet" href="styles/normalize.css"/>
     <link rel="stylesheet" href="styles/demo.css"/>
     <link rel="stylesheet" href="styles/ns-default.css"/>
@@ -14,6 +15,7 @@
 
 
     <script src="libs/angular/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js"></script>
     <script src="libs/jquery/dist/jquery.min.js"></script>
     <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="libs/angular-strap/dist/angular-strap.min.js"></script>
@@ -29,6 +31,8 @@
     <script src="libs/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="scripts/utils/classie.js"></script>
+
+    <script src="libs/angular-loading/angular-loading.js"></script>
     <script src="scripts/services/role.js"></script>
     <script src="scripts/utils/modernizr.custom.js"></script>
     <script src="scripts/utils/notificationFx.js"></script>
@@ -42,6 +46,7 @@
     <script src="scripts/services/getData.js"></script>
     <script src="scripts/services/account.js"></script>
     <script src="scripts/controller/MainCtrl.js"></script>
+    <script src="scripts/controller/home.js"></script>
     <script src="scripts/controller/categoryCtrl.js"></script>
     <script src="scripts/controller/DetailCtrl.js"></script>
     <script src="scripts/controller/login.js"></script>
@@ -69,8 +74,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li ui-sref-active="active"><a ui-sref="index.home">Home</a></li>
-                <li><a>AngularJS</a></li>
-                <li><a>Node</a></li>
                 <li ui-sref-active="active" ><a ui-sref="dashboard"ng-show="isAuthenticated()">Quản Trị</a></li>
                 <li><a>About</a></li>
 
@@ -80,7 +83,7 @@
 
                 <li class="dropdown">
                     <a ng-hide="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" ng-hide="isAuthenticated()"><i class="glyphicon glyphicon-cog"></i> Options <span class="caret"></span></a>
-                    <a ng-show="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" ng-show="isAuthenticated()">taipham<span class="caret"></span></a>
+                    <a ng-show="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" ng-show="isAuthenticated()"><i><strong>Hello</strong></i> {{userData.displayName || userData.email}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li ng-hide="isAuthenticated()"><a ui-sref="login"><i class="glyphicon glyphicon-user"></i> Đăng nhập</a></li>
                         <li ng-hide="isAuthenticated()"><a ui-sref="register"><i class="glyphicon glyphicon-plus"></i> Đăng ký</a></li>
@@ -99,7 +102,7 @@
 
 <div class="container" ui-view></div>
 <div id="footer">
-    <p>Copyright &copy;. All rights reserved. Design by <a href="http://freecsstemplates.in">Tai Pham</a></p>
+    <p>Copyright &copy;. All rights reserved. Design by <a href="http://freecsstemplates.in">Tai Pham - Vsoft</a></p>
 </div>
 
 </body>

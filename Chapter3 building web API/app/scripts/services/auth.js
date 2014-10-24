@@ -67,7 +67,7 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
                 var tokenUser = $window.localStorage[_satellizer_token] ? $window.localStorage[_satellizer_token] : null;
 
                 if (null !== tokenUser) {
-                    var result = accessLevel.bitMask <= this.getBitMask;
+                    var result = accessLevel.bitMask <= this.getBitMask();
 
                     return result;
                 } else {
@@ -99,23 +99,27 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
                     password: user.password
                 }).then(function (response) {
                     cb(null, response);
-                    me.getBitMask = response.data.bitMask;
+                    me.setBitMask(response.data.bitMask);
                 });
             },
             authenticate: function (provider, cb) {
                 var me = this;
                 $auth.authenticate(provider).then(function (response) {
                     cb(null, response);
-                    me.getBitMask = 1;
+                    me.setBitMask(1);
                 });
             },
             logout: function () {
-                _clearHeaderToken();
-                localStorageService.set(_userKey, null);
-                localStorageService.set(_role, null);
-                localStorageService.set(_token, null);
+                $auth.logout();
+                localStorageService.set('_bitMask', null);
+
             },
-            getBitMask: 0,
+            getBitMask: function () {
+                return localStorageService.get('_bitMask')
+            },
+            setBitMask: function (bitMask) {
+                localStorageService.set('_bitMask', bitMask);
+            },
             getUser: function () {
                 return localStorageService.get(_userKey);
             },

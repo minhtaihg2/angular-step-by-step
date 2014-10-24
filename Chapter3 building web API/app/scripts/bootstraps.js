@@ -12,7 +12,8 @@ angular.module('myApp', [
     'LocalStorageModule',
     'angularMoment',  // Moment.JS directives for Angular.JS
     'satellizer',
-    'mgcrea.ngStrap'
+    'mgcrea.ngStrap',
+    'darthwade.dwLoading'
 ]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -25,8 +26,8 @@ angular.module('myApp', [
             })
             .state('index.home', {
                 url: '/home',
-                templateUrl: 'views/home.html'
-                /* controller : 'homeCtrl'*/
+                templateUrl: 'views/home.html',
+                 controller : 'homeCtrl'
             })
             .state('index.category', {
                 url: '/category/:id/:name.html',
@@ -118,8 +119,8 @@ angular.module('myApp', [
             popupOptions: { width: 481, height: 269 }
         });
 
-    }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log', '$auth',
-    function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log, $auth) {
+    }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log', '$auth','$http',
+    function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log, $auth,$http) {
         $rootScope.$state = $state;
         $rootScope.$on('$stateChangeStart', function (event, to, toParams, fromState) {
 
@@ -134,7 +135,7 @@ angular.module('myApp', [
             } else {
                 console.log('access level :', false);
                 event.preventDefault();
-                $state.go('index.home')
+                $state.go('login');
 
             }
         });
@@ -143,8 +144,18 @@ angular.module('myApp', [
         });
 
         $rootScope.logout = function () {
-            $auth.logout();
+            auth.logout();
         };
+
+        if($auth.isAuthenticated()){
+            console.log('user has login!!!');
+            $http.get('http://localhost:3000/api/me').success(function (data) {
+                $rootScope.userData = data;
+                console.log(data);
+            }).error(function (err) {
+                console.log(err);
+            })
+        }
 
         $rootScope.isAuthenticated = function () {
             return $auth.isAuthenticated();

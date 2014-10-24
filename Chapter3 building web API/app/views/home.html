@@ -1,13 +1,16 @@
-<div class="post" ng-repeat="post in posts">
-    <h2><a ng-click="goToPage('index.detail',{id : post._id})">{{post.title}}</a></h2>
+<div style="min-height: 500px" dw-loading="posts" dw-loading-options="{text: 'Loading post...'}" class="users-list">
+    <div class="post" ng-repeat="post in posts">
+        <h2><a ng-click="goToPage('index.detail',{id : post._id})">{{post.title}}</a></h2>
 
-    <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Views: {{post.views}} | Author : {{post.Author.username}}</span>
+        <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Xem: {{post.views}} | Tác giả : {{post.Author.displayName || post.Author.email}}</span>
+        </div>
+        <div class="description">
+            <p>
+                {{post.desc}}
+            </p>
+        </div>
+        <p class="comments">Comments - <a href="">{{post.totalComment}}</a> <span>|</span> <a
+                ng-click="goToPage('index.detail',{id : post._id})">Continue
+            Reading</a></p>
     </div>
-    <div class="description">
-        <p>
-            {{post.desc}}
-        </p>
-    </div>
-    <p class="comments">Comments - <a href="">{{post.totalComment}}</a> <span>|</span> <a ng-click="goToPage('index.detail',{id : post._id})">Continue
-        Reading</a></p>
 </div>

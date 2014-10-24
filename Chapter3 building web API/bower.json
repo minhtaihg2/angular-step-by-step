@@ -14,7 +14,8 @@
     "angular-moment": "~0.8.2",
     "satellizer": "~0.8.1",
     "angular-strap": "~2.1.2",
-    "angular-motion": "~0.3.4"
+    "angular-motion": "~0.3.4",
+    "angular-loading": "~0.1.4"
   },
   "resolutions": {
     "angular": ">= 1.0.8"

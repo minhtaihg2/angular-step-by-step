@@ -6,7 +6,7 @@
         <div class="list">
             <h3>Category</h3>
             <ul>
-                <li ng-repeat="category in categories"><a ui-sref="index.category({id : '{{category._id}}',name : '{{category.Category}}'})">1 {{category.Category}}</a></li>
+                <li ng-repeat="category in categories"><a ui-sref-active="active-category" ui-sref="index.category({id : '{{category._id}}',name : '{{category.Category}}'})">1 {{category.Category}}</a></li>
             </ul>
             <h3>Comments</h3>
             <ul>
@@ -20,4 +20,10 @@
             </ul>
         </div>
     </div>
+    <style>
+        .active-category {
+            color: rgb(240, 136, 17)!important;
+            display: block;
+        }
+    </style>
 </div>

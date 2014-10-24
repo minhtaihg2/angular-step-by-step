@@ -1,1 +1,29 @@
-<h4>Dashboard</h4>
+<div style="min-height: 500px" dw-loading="dash" dw-loading-options="{text: 'Loading post...'}" class="users-list">
+    <table class="table table-hover">
+        <tr>
+            <td>STT</td>
+            <td>Tiêu đề</td>
+
+            <td>Danh mục</td>
+            <td>Lượt xem</td>
+            <td>Bình luận</td>
+            <td>Chỉnh sửa</td>
+            <td>Xoá</td>
+        </tr>
+        <tr ng-show="checkPost" ng-repeat="post in posts">
+            <td>{{$index}}</td>
+            <td>
+                {{post.title}}
+            </td>
+
+            <td> {{post.Category.Category}}
+            </td>
+            <td> {{post.views}}</td>
+            <td> {{post.totalComment}}</td>
+            <td><i class="glyphicon glyphicon-edit"></i></td>
+
+            <td><i class="glyphicon glyphicon-remove"></i></td>
+        </tr>
+        <i ng-hide="checkPost">Bạn chưa có bải viết vào<strong>ấn vào</strong> đây để tạo vào viết</i>
+    </table>
+</div>

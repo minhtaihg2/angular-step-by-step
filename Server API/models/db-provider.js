@@ -129,7 +129,7 @@
         content: 'String',
         slug: 'String',
         Author: {
-            ref: 'Users',
+            ref: 'userSchema2',
             type: db.ObjectId
         },
         Category: {
@@ -159,7 +159,7 @@
 
     postSchema.statics.getPopulation = function () {
         return [
-            ["Author", "username"],
+            ["Author", "email displayName"],
             ["Category", "*"]
         ];
     };

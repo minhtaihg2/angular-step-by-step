@@ -2,7 +2,7 @@
     <div class="post">
         <h2><a>{{post.title}}</a></h2>
 
-        <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Views: {{post.views}}</span>
+        <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Xem: {{post.views}} | Tác giả {{post.Author.displayName || post.Author.email}}</span>
         </div>
         <div class="description">
             <p>

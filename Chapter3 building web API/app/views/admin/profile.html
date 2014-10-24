@@ -1,1 +1,16 @@
-<h4>Profile</h4>
+<div class="col-md-6">
+    <h5>Thông tin User : {{userData.email || userData.displayName}}</h5>
+
+    <p>
+        _id: {{userData._id}}
+    </p>
+    <p>
+        Role : {{userData.role}}
+    </p>
+</div>
+<div class="col-md-6">
+    <i>Cập nhật thông tin cá nhân</i>
+    <input type="text" class="form-control" placeholder="Email" ng-model="userData.email"/>
+    <input style="margin-top: 10px"type="text" class="form-control" placeholder="displayName" ng-model="userData.displayName"/>
+    <button id="notification-trigger" style="margin-top: 10px" class="btn btn-primary" ng-click="updateUser(userData)">Update</button>
+</div>

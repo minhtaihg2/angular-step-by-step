@@ -4,18 +4,28 @@
 
 
 angular.module('myApp')
-    .controller('loginCtrl', ['$scope', 'appConfig', 'getData', 'dataStorage', 'auth', '$log', '$state', '$rootScope', '$auth',
-        function ($scope, appConfig, getData, dataStorage, auth, $log, $state, $rootScope, $auth) {
+    .controller('loginCtrl', ['$scope', 'appConfig', 'getData', 'dataStorage', 'auth', '$log', '$state', '$rootScope', '$auth','$http',
+        function ($scope, appConfig, getData, dataStorage, auth, $log, $state, $rootScope, $auth,$http) {
 
             $scope.authenticate = function (provider) {
                 auth.authenticate(provider, function (err, resp) {
-                    console.log('resp login social: ' + provider, resp);
+                    $http.get('http://localhost:3000/api/me').success(function (data) {
+                        $rootScope.userData = data;
+                        console.log(data);
+                    }).error(function (err) {
+                        console.log(err);
+                    })
                 })
 
             };
             $scope.login = function (user) {
                 auth.login(user, function (err, resp) {
-                    console.log('resp user login : ', resp);
+                    $http.get('http://localhost:3000/api/me').success(function (data) {
+                        $rootScope.userData = data;
+                        console.log(data);
+                    }).error(function (err) {
+                        console.log(err);
+                    })
                 })
             };
 
