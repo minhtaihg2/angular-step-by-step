@@ -11,7 +11,8 @@ angular.module('myApp', [
     'ngCollection',
     'LocalStorageModule',
     'angularMoment',  // Moment.JS directives for Angular.JS
-    'satellizer'
+    'satellizer',
+    'mgcrea.ngStrap'
 ]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -51,6 +52,11 @@ angular.module('myApp', [
             /*    Admin   */
 
 
+            .state('profile', {
+                url: '/profile',
+                templateUrl: 'views/admin/profile.html',
+                controller: 'profileCtrl'
+            })
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: 'views/admin/dashboard.html',
@@ -112,8 +118,9 @@ angular.module('myApp', [
             popupOptions: { width: 481, height: 269 }
         });
 
-    }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log','$auth',
-    function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log,$auth) {
+    }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log', '$auth',
+    function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log, $auth) {
+        $rootScope.$state = $state;
         $rootScope.$on('$stateChangeStart', function (event, to, toParams, fromState) {
 
             if (auth.getUser() === null) {
@@ -122,19 +129,13 @@ angular.module('myApp', [
                     toParams: toParams
                 };
             }
-            console.log('to.accessLevel :', to.accessLevel);
             if (to.accessLevel === undefined || auth.authorize(to.accessLevel)) {
-                //TODO action
+                // console.log('access level :', true);
             } else {
+                console.log('access level :', false);
                 event.preventDefault();
-                $state.go('login');
-            }
+                $state.go('index.home')
 
-            if (auth.getToken() == null) {
-                //TODO action has method token
-            } else {
-                $rootScope.userLogin.isLogin = true;
-                $rootScope.userLogin.user = auth.getUser();
             }
         });
         $rootScope.$on('unauthorize', function () {
@@ -142,18 +143,16 @@ angular.module('myApp', [
         });
 
         $rootScope.logout = function () {
-            $rootScope.userLogin.isLogin = false;
             $auth.logout();
         };
 
-        $rootScope.isAuthenticated = function() {
+        $rootScope.isAuthenticated = function () {
             return $auth.isAuthenticated();
         };
 
-        console.log('$rootScope.isAuthenticated :',$rootScope.isAuthenticated());
 
         amMoment.changeLocale('vi'); // setup time local viet nam
-        $rootScope.$state = $state;
+
 
         $rootScope.goToPage = function (state, id) { // setup url go to page
             if (!id) {
@@ -162,12 +161,7 @@ angular.module('myApp', [
                 $state.go(state, id);
             }
         };
-        $rootScope.userLogin = function () {
-            return{
-                isLogin: auth.isLogin(),
-                user: null
-            }
-        };
+
 
         //auth.setHeaderToken();
 

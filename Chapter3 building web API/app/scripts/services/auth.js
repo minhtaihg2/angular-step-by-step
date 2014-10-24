@@ -2,12 +2,13 @@
  * Created by taipham on 10/12/14.
  */
 
-angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService', 'appConfig',
-    function ($http, $log, localStorageService, appConfig) {
+angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService', 'appConfig', '$auth', '$window',
+    function ($http, $log, localStorageService, appConfig, $auth, $window) {
         var _token = 'token',
             _role = 'role',
             _userKey = 'user',
             _authorizationKey = 'authorization',
+            _satellizer_token = 'satellizer_token',
             _setHeaderToken = function (token) {
                 $http.defaults.headers.common[_authorizationKey] = token;
             },
@@ -63,10 +64,11 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
                 return checkUser.promise;
             },
             authorize: function (accessLevel) {
+                var tokenUser = $window.localStorage[_satellizer_token] ? $window.localStorage[_satellizer_token] : null;
 
-                var userRole = this.getRole();
-                if (null !== userRole) {
+                if (null !== tokenUser) {
                     var result = accessLevel.bitMask <= this.getBitMask;
+
                     return result;
                 } else {
                     return false;
@@ -74,21 +76,38 @@ angular.module('myApp').factory('auth', ['$http', '$log', 'localStorageService',
             },
             login: function (user, cb) {
                 var me = this;
-                $http({
-                    method: 'POST',
-                    data: user,
-                    url: appConfig.apiHost + '/login'
-                }).success(function (data) {
-                        _setHeaderToken(data.token);
-                        me.setToken(data.token);
-                        me.setRole(data.user.role);
-                        me.setUser(data.user);
-                        me.getBitMask = data.bitMask;
-                        cb(null, data);
-                    }, function (err) {
-                        cb(err, null)
-                    }
-                )
+                /*
+                 $http({
+                 method: 'POST',
+                 data: user,
+                 url: appConfig.apiHost + '/login'
+                 }).success(function (data) {
+                 _setHeaderToken(data.token);
+                 me.setToken(data.token);
+                 me.setRole(data.user.role);
+                 me.setUser(data.user);
+                 me.getBitMask = data.bitMask;
+                 cb(null, data);
+                 }, function (err) {
+                 cb(err, null)
+                 }
+                 )*/
+
+
+                $auth.login({
+                    email: user.email,
+                    password: user.password
+                }).then(function (response) {
+                    cb(null, response);
+                    me.getBitMask = response.data.bitMask;
+                });
+            },
+            authenticate: function (provider, cb) {
+                var me = this;
+                $auth.authenticate(provider).then(function (response) {
+                    cb(null, response);
+                    me.getBitMask = 1;
+                });
             },
             logout: function () {
                 _clearHeaderToken();

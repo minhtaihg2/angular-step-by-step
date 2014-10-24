@@ -8,31 +8,15 @@ angular.module('myApp')
         function ($scope, appConfig, getData, dataStorage, auth, $log, $state, $rootScope, $auth) {
 
             $scope.authenticate = function (provider) {
-                $auth.authenticate(provider);
-            };
+                auth.authenticate(provider, function (err, resp) {
+                    console.log('resp login social: ' + provider, resp);
+                })
 
+            };
             $scope.login = function (user) {
-
-                $auth.login({
-                    email: user.email,
-                    password: user.password
-                });
-
-              /*  auth.login(user, function (err, userData) {
-                    if (err) {
-                        $scope.user = {};
-                        $scope.notify = 'Username or password false';
-                    } else {
-                        if (auth.getBitMask == 1) {
-                            $state.go('dashboard');
-                        } else {
-                            $state.go('admin');
-                        }
-                    }
-
-                })*/
+                auth.login(user, function (err, resp) {
+                    console.log('resp user login : ', resp);
+                })
             };
-
-
 
         }]);
