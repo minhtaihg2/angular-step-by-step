@@ -6,33 +6,46 @@
 angular.module('myApp')
     .controller('dashCtrl', ['$scope', '$http', 'appConfig', 'ServiceResource', 'getData', 'dataStorage', 'auth', '$log', '$loading', '$rootScope',
         function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth, $log, $loading, $rootScope) {
+            var posts = [];
+            var _idUser;
+            var checkPost = function (data, _id) {
+                var length = data.length;
+                for (var i = 0; i < length; i++) {
+
+                    if (data[i].Author._id == _id) {
+                        posts.push(data[i]);
+                    }
+                }
+                if(posts.length == 0){
+                    $scope.checkPost = true;
+                }
+                return posts;
+            }
             var loadData = function () {
+                var me = this;
                 $scope.checkPost = false; // check post size = 0 show text
-                var _idUser;
-
                 $loading.start('dash');
-                if (angular.isUndefined($rootScope.userData)) {
-                    _idUser = $rootScope.userData;
+                if (!angular.isUndefined($rootScope.userData)) {
+                    _idUser = $rootScope.userData._id;
                 } else {
-
                     $http.get('http://localhost:3000/api/me').success(function (data) {
                         _idUser = data._id;
                     }).error(function (err) {
                         console.log(err);
                     })
-                };
+                }
 
 
                 if (dataStorage.Posts.size() > 0) {
-                    $scope.posts = dataStorage.Posts.all();
+                    $scope.posts = checkPost(dataStorage.Posts.all(), _idUser);
                     $loading.finish('dash');
-                    $scope.checkPost = true;
+
                 } else {
                     getData.getDataTable('posts').then(function (data) {
-                        $scope.posts = data;
+                        $scope.posts = checkPost(data, _idUser);
                         dataStorage.Posts.addAll(data);
                         $loading.finish('dash');
-                        $scope.checkPost = true;
+
                     }, function (err) {
                         // TODO if error
                     });

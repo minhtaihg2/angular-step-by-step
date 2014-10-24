@@ -1,4 +1,9 @@
 <div style="min-height: 500px" dw-loading="dash" dw-loading-options="{text: 'Loading post...'}" class="users-list">
+
+
+    <div class="alert alert-success" ng-show="checkPost" role="alert">  <i style="margin-bottom: 20px">Bạn chưa có bải viết nào ấn <strong>
+        <a href="">vào đây</a></strong> để tạo vào
+        viết</i></div>
     <table class="table table-hover">
         <tr>
             <td>STT</td>
@@ -10,7 +15,7 @@
             <td>Chỉnh sửa</td>
             <td>Xoá</td>
         </tr>
-        <tr ng-show="checkPost" ng-repeat="post in posts">
+        <tr ng-repeat="post in posts">
             <td>{{$index}}</td>
             <td>
                 {{post.title}}
@@ -24,6 +29,6 @@
 
             <td><i class="glyphicon glyphicon-remove"></i></td>
         </tr>
-        <i ng-hide="checkPost">Bạn chưa có bải viết vào<strong>ấn vào</strong> đây để tạo vào viết</i>
+
     </table>
 </div>
