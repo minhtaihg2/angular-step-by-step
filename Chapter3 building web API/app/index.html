@@ -74,13 +74,14 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li class="dropdown">
-                    <a ui-sref="login" class="dropdown-toggle" data-toggle="dropdown" ng-hide="isAuthenticated()"> Options <span class="caret"></span></a>
+                    <a ui-sref="login" class="dropdown-toggle" data-toggle="dropdown" ng-hide="isAuthenticated()"><i class="glyphicon glyphicon-cog"></i> Options <span class="caret"></span></a>
                     <a ui-sref="login" class="dropdown-toggle" data-toggle="dropdown" ng-show="isAuthenticated()">{{userLogin.user.username}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li ng-hide="isAuthenticated()"><a ui-sref="login">Đăng nhập</a></li>
-                        <li ng-show="isAuthenticated()" ng-click="logout()"><a>Đăng Xuất</a></li>
+                        <li ng-hide="isAuthenticated()"><a ui-sref="login"><i class="glyphicon glyphicon-user"></i> Đăng nhập</a></li>
+                        <li ng-hide="isAuthenticated()"><a ui-sref="register"><i class="glyphicon glyphicon-plus"></i> Đăng ký</a></li>
+                        <li ng-show="isAuthenticated()" ng-click="logout()"><a> <i class="glyphicon glyphicon-log-out"></i> Đăng Xuất</a></li>
                         <li class="divider"></li>
-                        <li><a>Tuỳ chọn</a></li>
+                        <li><a><i class="glyphicon glyphicon-th"></i> Tuỳ chọn</a></li>
                     </ul>
                 </li>
             </ul>

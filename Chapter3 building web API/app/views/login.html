@@ -21,15 +21,16 @@
    <div style="margin-top: 15px">
        <div class="checkbox">
            <label>
-               <input type="checkbox"> Can't check this
+               <input type="checkbox"> Ghi nhớ
            </label>
        </div>
 
        <button type="submit" ng-click="login(user)" class="btn btn-default">Đăng nhập</button>
-       <button type="submit" ng-click="$state.go('register')" class="btn btn-info">Đăng ký</button>
+      <!-- <button type="submit" ng-click="$state.go('register')" class="btn btn-info">Đăng ký</button>-->
+
    </div>
 
-
+    <a ui-sref="register" style="margin-top: 10px;display: block">Bạn chưa có tài khoản <strong>Đăng ký</strong> ngay</a>
     <hr/>
     <div>
         <button style="width: 100%" class="btn btn-danger" ng-click="authenticate('google')">Sign in with Google
