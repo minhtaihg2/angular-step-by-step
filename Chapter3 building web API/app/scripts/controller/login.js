@@ -33,11 +33,6 @@ angular.module('myApp')
                 })*/
             };
 
-            $scope.register = function (user) {
-                $auth.signup({
-                    email: user.email,
-                    password: user.password
-                });
-            };
+
 
         }]);

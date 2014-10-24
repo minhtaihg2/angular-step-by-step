@@ -33,6 +33,7 @@
     <script src="scripts/services/auth.js"></script>
     <script src="scripts/services/collection.js"></script>
     <script src="scripts/directive/ngEnter.js"></script>
+    <script src="scripts/directive/passStrength.js"></script>
     <script src="scripts/services/resource.js"></script>
     <script src="scripts/services/baseData.js"></script>
     <script src="scripts/services/getData.js"></script>
@@ -40,6 +41,7 @@
     <script src="scripts/controller/categoryCtrl.js"></script>
     <script src="scripts/controller/DetailCtrl.js"></script>
     <script src="scripts/controller/login.js"></script>
+    <script src="scripts/controller/register.js"></script>
     <script src="scripts/controller/admin/dashboard.js"></script>
     <script src="scripts/controller/admin/admin.js"></script>
 </head>
@@ -64,7 +66,7 @@
                 <li ui-sref-active="active"><a ui-sref="index.home">Home</a></li>
                 <li><a>AngularJS</a></li>
                 <li><a>Node</a></li>
-                <li ui-sref-active="active" ><a ui-sref="dashboard"ng-show="userLogin.isLogin">Quản Trị</a></li>
+                <li ui-sref-active="active" ><a ui-sref="dashboard"ng-show="isAuthenticated()">Quản Trị</a></li>
                 <li><a>About</a></li>
 
             </ul>
@@ -72,11 +74,11 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li class="dropdown">
-                    <a ui-sref="login" class="dropdown-toggle" data-toggle="dropdown" ng-hide="userLogin.isLogin"> Options <span class="caret"></span></a>
-                    <a ui-sref="login" class="dropdown-toggle" data-toggle="dropdown" ng-show="userLogin.isLogin">{{userLogin.user.username}}<span class="caret"></span></a>
+                    <a ui-sref="login" class="dropdown-toggle" data-toggle="dropdown" ng-hide="isAuthenticated()"> Options <span class="caret"></span></a>
+                    <a ui-sref="login" class="dropdown-toggle" data-toggle="dropdown" ng-show="isAuthenticated()">{{userLogin.user.username}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li ng-hide="userLogin.isLogin"><a ui-sref="login">Đăng nhập</a></li>
-                        <li ng-show="userLogin.isLogin" ng-click="logout()"><a>Đăng Xuất</a></li>
+                        <li ng-hide="isAuthenticated()"><a ui-sref="login">Đăng nhập</a></li>
+                        <li ng-show="isAuthenticated()" ng-click="logout()"><a>Đăng Xuất</a></li>
                         <li class="divider"></li>
                         <li><a>Tuỳ chọn</a></li>
                     </ul>

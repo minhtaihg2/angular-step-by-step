@@ -383,3 +383,10 @@ a:hover {
     background: rgb(245, 245, 244);
     padding: 30px;
 }
+.login input.form-control {
+    width: 100%;
+    height: 40px;
+}
+.login .input-group {
+    width: 335px;
+}

@@ -42,6 +42,11 @@ angular.module('myApp', [
                 templateUrl: 'views/login.html',
                 controller: 'loginCtrl'
             })
+            .state('register', {
+                url: '/register',
+                templateUrl: 'views/register.html',
+                controller: 'registerCtrl'
+            })
 
             /*    Admin   */
 
@@ -140,6 +145,12 @@ angular.module('myApp', [
             $rootScope.userLogin.isLogin = false;
             $auth.logout();
         };
+
+        $rootScope.isAuthenticated = function() {
+            return $auth.isAuthenticated();
+        };
+
+        console.log('$rootScope.isAuthenticated :',$rootScope.isAuthenticated());
 
         amMoment.changeLocale('vi'); // setup time local viet nam
         $rootScope.$state = $state;
