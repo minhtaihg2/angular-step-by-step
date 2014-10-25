@@ -9,7 +9,7 @@ angular.module('myApp')
         function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth, $log, $loading) {
             var loadData = function () {
                 $loading.start('posts');
-
+                console.log('get Data main:', dataStorage.Comments.all());
                 if (dataStorage.Posts.size() > 0) {
                     $scope.posts = dataStorage.Posts.all();
                     $loading.finish('posts');

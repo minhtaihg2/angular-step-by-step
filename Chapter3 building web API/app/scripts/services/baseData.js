@@ -44,11 +44,11 @@ angular.module('myApp')
             var updateData = window._.omit(me, me.omitFiled);
 
             me.busy = true;
-            ServiceResource.put({table: me.tableName, id: me.id}, updateData, function (result) {
+            ServiceResource.put({table: me.tableName, action : 'update',id: me.id}, updateData, function (result) {
                 console.log('result update :', result);
                 me.busy = false;
                 if (callback) {
-                    callback(result.success ? null : result.message, result.data)
+                    callback(result.success ? null : result.message, result.data);
                 }
             })
         };

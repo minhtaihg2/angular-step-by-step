@@ -16,6 +16,7 @@
   "dependencies": {
     "angular-local-storage": "^0.1.2",
     "angular-moment": "^0.8.2",
+    "connect-modrewrite": "^0.7.9",
     "satellizer": "^0.8.1"
   }
 }

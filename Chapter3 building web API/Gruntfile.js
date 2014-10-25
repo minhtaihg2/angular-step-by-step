@@ -24,6 +24,7 @@ module.exports = function(grunt) {
         }
     })
 
+
     grunt.loadNpmTasks('grunt-connect');
     grunt.registerTask('default', 'connect:serve');
 

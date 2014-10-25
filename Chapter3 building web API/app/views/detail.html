@@ -10,12 +10,12 @@
             </p>
         </div>
         <div id="comments" style="width: 100%;">
-            <img src="images/title3.gif" alt="" width="216" height="39"/><br/>
+            <img src="../images/title3.gif" alt="" width="216" height="39"/><br/>
 
 
             <div class="comment row" ng-repeat="user in userComments" style="width: 100%;">
                 <div class="avatar col-md-2">
-                    <img src="images/avatar1.jpg" alt="" width="50" height="50"/><br/>
+                    <img src="../images/avatar1.jpg" alt="" width="50" height="50"/><br/>
                     <span>{{user.Author.displayName || user.Author.email}}</span><br/>
                     <span am-time-ago="user.CreateAt"></span>
                 </div>
@@ -28,7 +28,7 @@ font-size: 14px;">Tiêu đê : {{user.title}}</strong>
             </div>
             <div id="add" class="row">
 
-                <img src="images/title4.gif" alt="" width="216" height="47" class="title"/><br/>
+                <img src="../images/title4.gif" alt="" width="216" height="47" class="title"/><br/>
                 <i style="margin-left: 10px" ng-hide="isAuthenticated()"><strong><a ui-sref="login">Đăng
                     nhập</a></strong> để bình luận!</i>
 
@@ -43,13 +43,14 @@ font-size: 14px;">Tiêu đê : {{user.title}}</strong>
                         </div>
                     </div>
                     <div class="col-md-10">
-                        <div class="form">
-                            <form>
-                                <input class="form-control" type="text" placeholder="Title" ng-model="cmt.title"/>
-                                <textarea class="form-control" ng-model="cmt.comments"></textarea>
-
-                                <a ng-click="addComment(cmt)"><img src="images/button.gif" alt="" width="94"
-                                                                   height="27"/></a>
+                        <div class="form" >
+                            <form name="commentUser">
+                                <input class="form-control" type="text" placeholder="Title" ng-model="cmt.title" required/>
+                                <textarea class="form-control" ng-model="cmt.comments" required></textarea>
+<!--
+                                <a ng-disabled="commentUser.$invalid" ><img src="images/button.gif" alt="" width="94"
+                                                                   height="27"/></a>-->
+                                <button id="notification-trigger" class="btn btn-primary" ng-click="addComment(cmt)" ng-disabled="commentUser.$invalid"><i class="glyphicon glyphicon-pencil"></i> Binh luận</button>
                             </form>
                         </div>
                     </div>

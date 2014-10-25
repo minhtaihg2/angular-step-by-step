@@ -17,6 +17,7 @@ angular.module('myApp', [
 ]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider) {
         $urlRouterProvider.otherwise('/home');
+        // $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
             .state('index', {
                 controller: 'MainCtrl',
