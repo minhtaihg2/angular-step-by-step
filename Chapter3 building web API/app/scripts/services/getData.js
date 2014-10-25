@@ -8,9 +8,11 @@ angular.module('myApp')
     .factory('getData', ['ServiceResource', 'baseModel', '$q', function (ServiceResource, baseModel, $q) {
 
         var fetData = {
-            getDataTable: function (tableName) {
+            getDataTable: function (tableName,limit,page) {
+                var _limit = limit || 1000;
+                var _page = page - 1;
                 var defer = $q.defer();
-                ServiceResource.get({table: tableName}, function (data) {
+                ServiceResource.get({table: tableName,limit : _limit,number : _page}, function (data) {
                     var values = data;
                     var dataBaseModel = [];
                     angular.forEach(values, function (item) {

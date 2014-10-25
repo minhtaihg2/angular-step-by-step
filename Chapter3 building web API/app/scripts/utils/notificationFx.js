@@ -87,7 +87,7 @@
 		this.ntf.innerHTML = strinner;
 
 		// append to body or the element specified in options.wrapper
-        console.log('abc :',this.options);
+
 		this.options.wrapper.insertBefore( this.ntf, this.options.wrapper.firstChild );
 
 		// dismiss after [options.ttl]ms

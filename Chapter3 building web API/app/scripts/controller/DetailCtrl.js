@@ -109,7 +109,7 @@ angular.module('myApp')
                         // create the notification
                         var notification = new NotificationFx({
                             wrapper: document.body,
-                            message: '<div class="ns-thumb"><img style="width: 63px" src="../images/user1.jpg"/></div><div class="ns-content"><p><a>Thông báo :</a> cảm ơn bạn đã bình luận bài viết này</p></div>',
+                            message: '<div class="nfs-thumb"><img style="width: 63px" src="../images/user1.jpg"/></div><div class="ns-content"><p><a>Thông báo :</a> cảm ơn bạn đã bình luận bài viết này</p></div>',
                             layout: 'other',
                             ttl: 5000,
                             effect: 'thumbslider',

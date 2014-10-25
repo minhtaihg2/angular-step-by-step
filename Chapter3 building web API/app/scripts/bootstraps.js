@@ -163,7 +163,7 @@ angular.module('myApp', [
         $rootScope.isAuthenticated = function () {
             return $auth.isAuthenticated();
         };
-
+        $rootScope.searchPost = '';
 
         amMoment.changeLocale('vi'); // setup time local viet nam
 

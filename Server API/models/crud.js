@@ -39,8 +39,10 @@ var crud = function () {
                     if (req.query.limit) {
                         var limitItem = req.query.limit;
                     }
-
-                    model.find().limit(limitItem).sort({ CreateAt: -1}).exec(function (err, result) {
+                    if (req.query.number) {
+                        var page = req.query.number
+                    }
+                    model.find().limit(limitItem).sort({ CreateAt: -1}).skip(page * limitItem).exec(function (err, result) {
 
                         if (err) {
                             res.json(err);
@@ -61,7 +63,7 @@ var crud = function () {
                 } else {
 
                     model.findById(_id, function (err, result) {
-                       var dataID = [];
+                        var dataID = [];
                         if (err) {
                             res.json(err);
                             console.log('err : ', err);

@@ -1,6 +1,9 @@
-<div style="min-height: 500px" dw-loading="posts" dw-loading-options="{text: 'Loading post...'}" class="users-list">
-    <div class="post" ng-repeat="post in posts">
-        <h2><a ng-click="goToPage('index.detail',{id : post._id})">{{post.title}}</a></h2>
+<div style="min-height:350px" dw-loading="posts" dw-loading-options="{text: 'tải dữ liệu...'}" class="users-list">
+    <!--  <input type="text" ng-model="searchPost.title"/>-->
+
+    <div class="post" dir-paginate="post in posts | filter : searchPost | itemsPerPage: 3" total-items="postPerPage">
+        <h2><a ng-bind-html="post.title | highlight:searchPost.title"
+               ng-click="goToPage('index.detail',{id : post._id})"></a></h2>
 
         <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Xem: {{post.views}} | Tác giả : {{post.Author.displayName || post.Author.email}}</span>
         </div>
@@ -13,4 +16,15 @@
                 ng-click="goToPage('index.detail',{id : post._id})">Continue
             Reading</a></p>
     </div>
+
 </div>
+
+<div style="float: left;width: 100%;
+text-align: center;">
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+</div>
+<style>
+    .highlighted {
+        background: yellow
+    }
+</style>

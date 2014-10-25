@@ -8,18 +8,17 @@ angular.module('myApp')
             console.log('create Posts');
 
             var _idUser;
-            if (dataStorage.Categories.size() > 0) {
-                $scope.categories = dataStorage.Categories.all();
-                console.log($scope.categories);
-            } else {
-                getData.getDataTable('category').then(function (data) {
+
+            getData.getDataTable('category').then(function (data) {
                     $scope.categories = data;
-                    dataStorage.Categories.addAll(data);
-                    console.log($scope.categories);
+                    $scope.post =
+                    {
+                        Category: data[0]._id
+                    }
                 }, function (err) {
                     // TODO if error
-                });
-            }
+                }
+            );
 
 
             $scope.addPost = function (cmt) {
@@ -34,7 +33,7 @@ angular.module('myApp')
                 }
                 var bttn = document.getElementById('notification-trigger');
                 classie.add(bttn, 'active');
-                console.log(cmt);
+
                 var post = {
                     Author: _idUser,
                     Category: cmt.Category,
@@ -42,7 +41,7 @@ angular.module('myApp')
                     content: cmt.content,
                     title: cmt.title
                 };
-                console.log(post);
+
                 var item = new baseModel('Posts', post, 'create');
                 item.create(function (err, result) {
 
@@ -76,4 +75,5 @@ angular.module('myApp')
 
             };
 
-        }]);
+        }])
+;
