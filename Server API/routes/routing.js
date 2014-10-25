@@ -178,7 +178,11 @@ module.exports = function (app, collection) {
                 if (!isMatch) {
                     return res.status(401).send({ message: 'Wrong email and/or password' });
                 }
-                res.send({ token: createToken(user), bitMask: 1, user: user });
+                if (user.role == 'user') {
+                    res.send({ token: createToken(user), bitMask: 1, user: user });
+                } else if (user.role == 'admin') {
+                    res.send({ token: createToken(user), bitMask: 2, user: user });
+                }
             });
         });
     });

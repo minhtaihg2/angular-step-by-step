@@ -10,7 +10,7 @@
 </div>
 <div class="col-md-6">
     <i>Cập nhật thông tin cá nhân</i>
-    <input type="text" class="form-control" placeholder="Email" ng-model="userData.email"/>
+    <input type="text" class="form-control" placeholder="Email" ng-model="userData.email" ng-disabled="true"/>
     <input style="margin-top: 10px"type="text" class="form-control" placeholder="displayName" ng-model="userData.displayName"/>
     <button id="notification-trigger" style="margin-top: 10px" class="btn btn-primary" ng-click="updateUser(userData)">Update</button>
 </div>
