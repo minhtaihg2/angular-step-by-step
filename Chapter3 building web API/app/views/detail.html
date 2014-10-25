@@ -5,9 +5,9 @@
         <div><span am-time-ago="post.CreateAt" class="date"></span><span class="categories">Xem: {{post.views}} | Tác giả {{post.Author.displayName || post.Author.email}}</span>
         </div>
         <div class="description">
-            <p>
-                {{post.content}}
-            </p>
+            <div style="font-size: 15px;" ng-bind-html="post.content">
+
+            </div>
         </div>
         <div id="comments" style="width: 100%;">
             <img src="../images/title3.gif" alt="" width="216" height="39"/><br/>

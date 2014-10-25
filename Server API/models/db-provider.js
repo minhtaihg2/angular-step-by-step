@@ -15,13 +15,11 @@
         SALT_WORK_FACTOR = 10;
 
 
-
-
     var userSchema2 = new db.Schema({
         email: { type: String, unique: true, lowercase: true },
-        role : {
+        role: {
             type: 'String',
-            default : 'user'
+            default: 'user'
         },
         password: { type: String, select: false },
         displayName: String,
@@ -33,29 +31,28 @@
         twitter: String
     });
 
-    userSchema2.pre('save', function(next) {
+    userSchema2.pre('save', function (next) {
         var user = this;
         if (!user.isModified('password')) {
             return next();
         }
-        bcrypt1.genSalt(10, function(err, salt) {
-            bcrypt1.hash(user.password, salt, function(err, hash) {
+        bcrypt1.genSalt(10, function (err, salt) {
+            bcrypt1.hash(user.password, salt, function (err, hash) {
                 user.password = hash;
                 next();
             });
         });
     });
 
-    userSchema2.methods.comparePassword = function(password, done) {
-        bcrypt1.compare(password, this.password, function(err, isMatch) {
+    userSchema2.methods.comparePassword = function (password, done) {
+        bcrypt1.compare(password, this.password, function (err, isMatch) {
             done(err, isMatch);
         });
     };
 
-/*
-* ============================ DB BASE ============
-* */
-
+    /*
+     * ============================ DB BASE ============
+     * */
 
 
     userSchema = new db.Schema({
@@ -144,7 +141,11 @@
             type: 'Number',
             default: 0
         },
-        totalComment : {
+        public: {
+            type: 'Number',
+            default: 1
+        },
+        totalComment: {
             type: 'Number',
             default: 0
         }

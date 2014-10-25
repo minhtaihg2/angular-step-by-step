@@ -13,7 +13,8 @@ angular.module('myApp', [
     'angularMoment',  // Moment.JS directives for Angular.JS
     'satellizer',
     'mgcrea.ngStrap',
-    'darthwade.dwLoading'
+    'darthwade.dwLoading',
+    'textAngular'
 ]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -70,7 +71,7 @@ angular.module('myApp', [
                 url: '/admin',
                 templateUrl: 'views/admin/admin.html',
                 controller: 'adminCtrl',
-                accessLevel: window.userCan.accessAdmin
+                accessLevel: window.userCan.accessUser
             });
 
 
