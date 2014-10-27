@@ -44,7 +44,9 @@ Schema for POSTMAN:
 + category : Category,Description
 + posts : title,content,slug,commentName,desc,Author(ObjectId - > _id from users),Category(ObjectId -> _id from category)
 + comments : post(ObjectId - > _id from posts),comments,
-
-Browser : http://localhost:3000/Users -> show user
++ userSchema2 : // login social
 
 (similar : posts,comments,category)
+
+Browser : http://localhost:3000/userSchema2 -> show user (user local + user social)
+
