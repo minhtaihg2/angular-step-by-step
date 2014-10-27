@@ -26,10 +26,10 @@ module.exports = function (app, collection) {
 
     for (var i = 0; i < dataTable.length; i++) {
         app.get('/' + dataTable[i], collection[dataTable[i]].read);
-        app.post('/' + dataTable[i] + '/create', collection[dataTable[i]].create);
+        app.post('/' + dataTable[i] + '/create', ensureAuthenticated, collection[dataTable[i]].create);
         app.get('/' + dataTable[i] + '/:id', collection[dataTable[i]].read);
         app.put('/' + dataTable[i] + '/update/:id', collection[dataTable[i]].update);
-        app.delete('/' + dataTable[i] + '/delete/:id', collection[dataTable[i]].deleteId);
+        app.delete('/' + dataTable[i] + '/delete/:id', ensureAuthenticated, collection[dataTable[i]].deleteId);
     }
 
     /*  app.get('/:tableName',collection.api);*/

@@ -35,16 +35,7 @@ var crud = function () {
                     }
                 }
                 if (!_id) {
-                    function malformedJSON2Array(tar) {
-                        var arr = [];
-                        tar = tar.replace(/^\{|\}$/g, '').split(',');
-                        for (var i = 0, cur, pair; cur = tar[i]; i++) {
-                            arr[i] = {};
-                            pair = cur.split(':');
-                            arr[i][pair[0]] = /^\d*$/.test(pair[1]) ? +pair[1] : pair[1];
-                        }
-                        return arr;
-                    }
+
 
                     if (req.query.limit) {
                         var limitItem = req.query.limit;
@@ -52,18 +43,6 @@ var crud = function () {
                     if (req.query.number) {
                         var page = req.query.number;
                     }
-                    /* if(req.query.filter){
-                     var dataJSON = JSON.parse(JSON.stringify(req.query.filter));
-                     */
-                    /*  var objs = dataJSON.map(JSON.parse(dataJSON));*/
-                    /*
-                     console.log('x ',typeof dataJSON,dataJSON);
-
-                     }
-                     var filter = {
-                     name : 'totalComment',
-                     equals :'3'
-                     };*/
 
                     /*.where(filter.name).equals(filter.equals)*/
 

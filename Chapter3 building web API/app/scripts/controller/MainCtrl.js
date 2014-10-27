@@ -56,7 +56,7 @@ angular.module('myApp')
                 ];
                 var filter = JSON.stringify(filters);
 
-                getData.getDataTable('category', null, null).then(function (data) {
+                getData.getDataTable('category').then(function (data) {
                     $scope.categories = data;
                     dataStorage.Categories.addAll(data);
                 }, function (err) {
