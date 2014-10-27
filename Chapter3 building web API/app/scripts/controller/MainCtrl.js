@@ -9,11 +9,7 @@ angular.module('myApp')
         function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth, $log, $loading) {
 
             $scope.totalPosts = 0;
-            $scope.postPerPage = 7; // this should match however many results your API puts on one page
-
-
-            getResultsPage(1);
-
+            $scope.postPerPage = 5; // this should match however many results your API puts on one page
             $scope.pageChanged = function (newPage) {
                 getResultsPage(newPage);
                 $loading.start('posts');
