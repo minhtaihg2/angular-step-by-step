@@ -5,7 +5,8 @@
 'use strict'
 
 angular.module('myApp')
-    .factory('getData', ['ServiceResource', 'baseModel', '$q', function (ServiceResource, baseModel, $q) {
+    .factory('getData', ['ServiceResource', 'baseModel', '$q',
+        function (ServiceResource, baseModel, $q) {
 
         var fetData = {
             getDataTable: function (tableName, limit, page, filter) {
