@@ -40,37 +40,37 @@ module.exports = function (app, collection) {
     });
 
 
-    /*app.post('/login', function (req, res) {
-     if (req.body.username == '' || req.body.password == '') {
-     return res.send(401);
-     }
+    app.post('/login', function (req, res) {
+        if (req.body.username == '' || req.body.password == '') {
+            return res.send(401);
+        }
 
-     db.findOne({username: req.body.username}, function (err, user) {
-     if (err) {
-     console.log(err);
-     return res.send(401);
-     }
+        db.findOne({username: req.body.username}, function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.send(401);
+            }
 
-     user.comparePassword(req.body.password, function (isMatch) {
-     if (!isMatch) {
-     console.log("Attempt failed to login with " + user.username);
-     return res.send(401);
-     }
-     var token = jwt1.sign(user, 'authentication', { expiresInMinutes: 60 });
+            user.comparePassword(req.body.password, function (isMatch) {
+                if (!isMatch) {
+                    console.log("Attempt failed to login with " + user.username);
+                    return res.send(401);
+                }
+                var token = jwt1.sign(user, 'authentication', { expiresInMinutes: 60 });
 
-     var bitMask;
-     if (user.role == 'user') {
-     bitMask = 1;
-     } else if (user.role == 'admin') {
-     bitMask = 2;
-     }
-     user.bitMask = 1;
-     return res.json({token: token, user: user, bitMask: bitMask});
-     });
+                var bitMask;
+                if (user.role == 'user') {
+                    bitMask = 1;
+                } else if (user.role == 'admin') {
+                    bitMask = 2;
+                }
+                user.bitMask = 1;
+                return res.json({token: token, user: user, bitMask: bitMask});
+            });
 
-     });
+        });
 
-     });*/
+    });
 
 
     /*

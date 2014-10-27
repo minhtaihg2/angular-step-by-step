@@ -35,31 +35,57 @@ var crud = function () {
                     }
                 }
                 if (!_id) {
+                    function malformedJSON2Array(tar) {
+                        var arr = [];
+                        tar = tar.replace(/^\{|\}$/g, '').split(',');
+                        for (var i = 0, cur, pair; cur = tar[i]; i++) {
+                            arr[i] = {};
+                            pair = cur.split(':');
+                            arr[i][pair[0]] = /^\d*$/.test(pair[1]) ? +pair[1] : pair[1];
+                        }
+                        return arr;
+                    }
 
                     if (req.query.limit) {
                         var limitItem = req.query.limit;
                     }
                     if (req.query.number) {
-                        var page = req.query.number
+                        var page = req.query.number;
                     }
-                    model.find().limit(limitItem).sort({ CreateAt: -1}).skip(page * limitItem).exec(function (err, result) {
+                    /* if(req.query.filter){
+                     var dataJSON = JSON.parse(JSON.stringify(req.query.filter));
+                     */
+                    /*  var objs = dataJSON.map(JSON.parse(dataJSON));*/
+                    /*
+                     console.log('x ',typeof dataJSON,dataJSON);
 
-                        if (err) {
-                            res.json(err);
-                            console.log('err : ', err);
-                        } else {
-                            if (!!flag) {
-                                var promise = model.populate(result, opts);
-                                promise.then(function (err, data) {
+                     }
+                     var filter = {
+                     name : 'totalComment',
+                     equals :'3'
+                     };*/
+
+                    /*.where(filter.name).equals(filter.equals)*/
+
+                    model.find().limit(limitItem).sort({ CreateAt: -1}).
+                        skip(page * limitItem).exec(function (err, result) {
+
+                            if (err) {
+                                res.json(err);
+                                console.log('err : ', err);
+                            } else {
+                                if (!!flag) {
+                                    var promise = model.populate(result, opts);
+                                    promise.then(function (err, data) {
+                                        res.json(result);
+
+                                    }).end();
+                                } else {
                                     res.json(result);
 
-                                }).end();
-                            } else {
-                                res.json(result);
-
+                                }
                             }
-                        }
-                    });
+                        });
                 } else {
 
                     model.findById(_id, function (err, result) {

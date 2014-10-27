@@ -22,7 +22,7 @@ angular.module('myApp')
             }
             var saveData = window._.omit(me, me.omitFiled);
             me.busy = true;
-            ServiceResource.save({table: me.tableName, action: me.action }, saveData, function (result) {
+            ServiceResource.save({table: me.tableName, action: 'create' }, saveData, function (result) {
 
                 if (result) {
                     me.busy = false;
@@ -44,7 +44,7 @@ angular.module('myApp')
             var updateData = window._.omit(me, me.omitFiled);
 
             me.busy = true;
-            ServiceResource.put({table: me.tableName, action : 'update',id: me.id}, updateData, function (result) {
+            ServiceResource.put({table: me.tableName, action: 'update', id: me.id}, updateData, function (result) {
                 console.log('result update :', result);
                 me.busy = false;
                 if (callback) {

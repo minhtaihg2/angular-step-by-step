@@ -96,7 +96,7 @@ angular.module('myApp')
                     comments: cmt.comments,
                     title: cmt.title
                 };
-                var item = new baseModel('comments', comment, 'create');
+                var item = new baseModel('comments', comment);
                 item.create(function (err, result) {
 
                     if (err) {
