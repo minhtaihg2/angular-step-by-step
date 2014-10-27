@@ -50,3 +50,14 @@ Schema for POSTMAN:
 
 Browser : http://localhost:3000/userSchema2 -> show user (user local + user social)
 
+==========================
+
+user Admin login :
+
+username : admin@gmail.com
+password : admin
+
+
+
+## tks!!!!
+
