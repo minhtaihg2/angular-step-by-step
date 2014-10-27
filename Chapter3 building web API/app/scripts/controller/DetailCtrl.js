@@ -35,17 +35,13 @@ angular.module('myApp')
             console.log('_id :', _id);
 
 
-            if (dataStorage.Posts.size() > 0) {
-                $scope.post = dataStorage.Posts.get(_id);
+            getData.getDataId('posts', _id).then(function (data) {
+                $scope.post = data;
                 addView($scope.post, 0);
-            } else {
-                getData.getDataId('posts', _id).then(function (data) {
-                    $scope.post = data;
-                    addView($scope.post, 0);
-                }, function (err) {
-                    console.log(err);
-                });
-            }
+            }, function (err) {
+                console.log(err);
+            });
+
 
             $scope.userComments = [];
             var cmtForPost = [];

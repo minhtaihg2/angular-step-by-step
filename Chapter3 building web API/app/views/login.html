@@ -1,11 +1,11 @@
-<form name="formLogin" class="form-inline text-center login" role="form">
+<form novalidate name="formLogin" class="form-inline text-center login" role="form">
     <h1><i class="glyphicon glyphicon-lock"></i> Đăng nhập</h1>
     <i>{{notify}}</i>
 
     <div class="form-group">
         <div class="input-group" style="margin-left: -3px;">
             <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-            <input required class="form-control" type="email" placeholder="Email" ng-model="user.email"/>
+            <input novalidate="true" required class="form-control" type="email" placeholder="Email" ng-model="user.email"/>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
     <div style="margin-top: 10px" class="form-group">
         <div class="input-group">
             <div class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></div>
-            <input required class="form-control" type="password" placeholder="Mật Khẩu" ng-model="user.password"/>
+            <input ng-enter="login(user)" required class="form-control" type="password" placeholder="Mật Khẩu" ng-model="user.password"/>
         </div>
     </div>
     <br/>

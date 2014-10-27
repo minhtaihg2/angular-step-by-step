@@ -5,8 +5,8 @@
 'use strict'
 
 angular.module('myApp')
-    .controller('categoryCtrl', ['$scope', 'getData', '$stateParams', 'dataStorage','$location',
-        function ($scope, getData, $stateParams, dataStorage,$location) {
+    .controller('categoryCtrl', ['$scope', 'getData', '$stateParams', 'dataStorage', '$location',
+        function ($scope, getData, $stateParams, dataStorage, $location) {
             var _id = $stateParams.id;
 
             var postForCategories = function (data) {
@@ -18,7 +18,6 @@ angular.module('myApp')
                 }
             };
 
-
             $scope.postForCategory = [];
 
             if (dataStorage.Categories.size() > 0) {
@@ -29,13 +28,9 @@ angular.module('myApp')
                 });
             }
 
-            if (dataStorage.Posts.size() > 0) {
-                var data = dataStorage.Posts.all();
+            getData.getDataTable('posts').then(function (data) {
                 postForCategories(data);
-            } else {
-                getData.getDataTable('posts').then(function (data) {
-                    postForCategories(data);
-                });
-            }
+                console.log('category page :',data);
+            });
 
-        }])
+        }]);
