@@ -16,8 +16,8 @@ angular.module('myApp', [
     'darthwade.dwLoading',
     'textAngular',
     'restangular'
-]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider','RestangularProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider,RestangularProvider) {
+]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider', 'RestangularProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider, RestangularProvider) {
         $urlRouterProvider.otherwise('/home');
         // $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
@@ -123,13 +123,11 @@ angular.module('myApp', [
         });
 
 
+        RestangularProvider.setBaseUrl('http://vsoft.vn:8888/api/');
 
-
-        RestangularProvider.setBaseUrl('https://api.mongolab.com/api/1/databases/nodejs/collections');
-        RestangularProvider.setDefaultRequestParams({ apiKey: 'Mu_JF6_cINutikVj8rUdLYWupY8lm5kl'});
         RestangularProvider.setRestangularFields({
             id: '_id.$oid',
-            cache : true
+            cache: true
         });
 
 
@@ -141,6 +139,36 @@ angular.module('myApp', [
             }
             return elem;
         })
+
+
+        // interceptor
+
+        var interceptor = function ($q, $rootScope) {
+            return {
+                'response': function (resp) {
+                    return resp;
+                },
+                'responseError': function (rejection) {
+                    switch (rejection.status) {
+                        case 401 :
+                            $rootScope.$broadcast('auth:loginRequire');
+                            break;
+                        case 403 :
+                            $rootScope.$broadcast('auth:forbidden');
+                            break;
+                        case 404 :
+                            $rootScope.$broadcast('page:not found');
+                            break;
+                        case 500 :
+                            $rootScope.$broadcast('server:error');
+                            break;
+
+                    }
+                    return $q.reject(rejection);
+                }
+            }
+        };
+        $httpProvider.interceptors.push(interceptor);
 
     }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log', '$auth', '$http',
     function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log, $auth, $http) {
@@ -163,8 +191,16 @@ angular.module('myApp', [
 
             }
         });
-        $rootScope.$on('unauthorize', function () {
-            //TODO authorize
+        $rootScope.$on('auth:loginRequire', function () {
+            $state.go('login');
+        });
+
+        $rootScope.$on('server:error', function () {
+            console.log('Server error!!!!');
+        });
+
+        $rootScope.$on('page:not found', function () {
+            console.log('Page not found!!!!');
         });
 
         $rootScope.logout = function () {
