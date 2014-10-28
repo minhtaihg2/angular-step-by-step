@@ -14,9 +14,10 @@ angular.module('myApp', [
     'satellizer',
     'mgcrea.ngStrap',
     'darthwade.dwLoading',
-    'textAngular'
-]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider) {
+    'textAngular',
+    'restangular'
+]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider','RestangularProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider,RestangularProvider) {
         $urlRouterProvider.otherwise('/home');
         // $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
@@ -120,6 +121,26 @@ angular.module('myApp', [
             type: '2.0',
             popupOptions: { width: 481, height: 269 }
         });
+
+
+
+
+        RestangularProvider.setBaseUrl('https://api.mongolab.com/api/1/databases/nodejs/collections');
+        RestangularProvider.setDefaultRequestParams({ apiKey: 'Mu_JF6_cINutikVj8rUdLYWupY8lm5kl'});
+        RestangularProvider.setRestangularFields({
+            id: '_id.$oid',
+            cache : true
+        });
+
+
+        RestangularProvider.setRequestInterceptor(function (elem, operation, what) {
+
+            if (operation === 'put') {
+                elem._id = undefined;
+                return elem;
+            }
+            return elem;
+        })
 
     }]).run(['$rootScope', '$state', 'appConfig', 'dataStorage', 'amMoment', 'auth', '$log', '$auth', '$http',
     function ($rootScope, $state, appConfig, dataStorage, amMoment, auth, $log, $auth, $http) {

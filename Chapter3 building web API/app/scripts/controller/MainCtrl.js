@@ -5,29 +5,30 @@
 'use strict'
 
 angular.module('myApp')
-    .controller('MainCtrl', ['$scope', '$http', 'appConfig', 'ServiceResource', 'getData', 'dataStorage', 'auth', '$log', '$loading',
-        function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth, $log, $loading) {
+    .controller('MainCtrl', ['$scope', '$http', 'appConfig', 'ServiceResource', 'getData', 'dataStorage', 'auth', '$log', '$loading', 'Restangular',
+        function ($scope, $http, appConfig, ServiceResource, getData, dataStorage, auth, $log, $loading, Restangular) {
 
-            $scope.totalPosts = 0;
-            $scope.postPerPage = 5; // this should match however many results your API puts on one page
-            $scope.pageChanged = function (newPage) {
-                getResultsPage(newPage);
-                $loading.start('posts');
-            };
+             $scope.totalPosts = 0;
+             $scope.postPerPage = 5; // this should match however many results your API puts on one page
+             $scope.pageChanged = function (newPage) {
+             getResultsPage(newPage);
+             $loading.start('posts');
+             };
 
-            function getResultsPage(pageNumber) {
 
-                // this is just an example, in reality this stuff should be in a service
+             function getResultsPage(pageNumber) {
 
-                getData.getDataTable('posts', 2, pageNumber).then(function (data) {
-                    $scope.posts = data;
-                    //$scope.totalPosts = data.Count;
-                    $loading.finish('posts');
-                }, function (err) {
-                    // TODO if error
-                    console.log(err);
-                });
-            }
+             // this is just an example, in reality this stuff should be in a service
+
+             getData.getDataTable('posts', 2, pageNumber).then(function (data) {
+             $scope.posts = data;
+             //$scope.totalPosts = data.Count;
+             $loading.finish('posts');
+             }, function (err) {
+             // TODO if error
+             console.log(err);
+             });
+             }
 
             if (dataStorage.Categories.size() > 0) {
                 $scope.categories = dataStorage.Categories.all();
@@ -47,5 +48,11 @@ angular.module('myApp')
                     // TODO if error
                 });
             }
+
+           /* Restangular.all("posts").getList().then(function (posts) {
+                console.log(posts);
+                $scope.posts = posts;
+            });*/
+
 
         }]);

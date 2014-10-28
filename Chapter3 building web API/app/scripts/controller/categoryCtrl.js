@@ -20,17 +20,14 @@ angular.module('myApp')
 
             $scope.postForCategory = [];
 
-            if (dataStorage.Categories.size() > 0) {
-                $scope.categories = dataStorage.Categories.get(_id);
-            } else {
-                getData.getDataId('category', _id).then(function (data) {
-                    $scope.categories = data;
-                });
-            }
+
+            getData.getDataId('category', _id).then(function (data) {
+                $scope.categories = data;
+            });
 
             getData.getDataTable('posts').then(function (data) {
                 postForCategories(data);
-                console.log('category page :',data);
+                console.log('category page :', data);
             });
 
         }]);

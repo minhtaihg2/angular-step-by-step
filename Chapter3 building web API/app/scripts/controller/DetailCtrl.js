@@ -6,8 +6,8 @@
 'use strict'
 
 angular.module('myApp')
-    .controller('DetailCtrl', ['$scope', '$stateParams', 'getData', 'dataStorage', '$location', '$state', '$rootScope', 'baseModel', '$http',
-        function ($scope, $stateParams, getData, dataStorage, $location, $state, $rootScope, baseModel, $http) {
+    .controller('DetailCtrl', ['$scope', '$stateParams', 'getData', 'dataStorage', '$location', '$state', '$rootScope', 'baseModel', '$http', 'Restangular',
+        function ($scope, $stateParams, getData, dataStorage, $location, $state, $rootScope, baseModel, $http, Restangular) {
             var _id = $stateParams.id,
                 _idUser;
             var addView = function (data, flag) {
@@ -124,4 +124,23 @@ angular.module('myApp')
 
             };
             loadComments();
+
+            /*
+
+             var dataPostId = Restangular.one("posts", _id);
+
+             dataPostId.get().
+             then(function (detail) {
+             console.log('detail : ', detail.views);
+             detail.views = detail.views + 1;
+
+             detail.put().then(function(project){
+             console.log('save :',project);
+             });
+             console.log('data :',data);
+             $scope.post = detail;
+             });
+             */
+
+
         }]);
