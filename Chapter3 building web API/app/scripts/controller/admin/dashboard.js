@@ -16,7 +16,7 @@ angular.module('myApp')
                         posts.push(data[i]);
                     }
                 }
-                if(posts.length == 0){
+                if (posts.length == 0) {
                     $scope.checkPost = true;
                 }
                 return posts;
@@ -36,20 +36,15 @@ angular.module('myApp')
                 }
 
 
-                if (dataStorage.Posts.size() > 0) {
-                    $scope.posts = checkPost(dataStorage.Posts.all(), _idUser);
+                getData.getDataTable('posts', null, null, "content").then(function (data) {
+                    $scope.posts = checkPost(data, _idUser);
+                    dataStorage.Posts.addAll(data);
                     $loading.finish('dash');
 
-                } else {
-                    getData.getDataTable('posts').then(function (data) {
-                        $scope.posts = checkPost(data, _idUser);
-                        dataStorage.Posts.addAll(data);
-                        $loading.finish('dash');
+                }, function (err) {
+                    // TODO if error
+                });
 
-                    }, function (err) {
-                        // TODO if error
-                    });
-                }
             }
             loadData();
         }]);

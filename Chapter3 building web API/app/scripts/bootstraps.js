@@ -15,7 +15,8 @@ angular.module('myApp', [
     'mgcrea.ngStrap',
     'darthwade.dwLoading',
     'textAngular',
-    'restangular'
+    'restangular',
+    'angular-data.DSCacheFactory'
 ]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider', 'RestangularProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider, RestangularProvider) {
         $urlRouterProvider.otherwise('/home');

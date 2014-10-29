@@ -36,17 +36,21 @@ var crud = function () {
                 }
                 if (!_id) {
 
-
+                    var exclude = null;
                     if (req.query.limit) {
                         var limitItem = req.query.limit;
                     }
                     if (req.query.number) {
                         var page = req.query.number;
                     }
+                    if (req.query.exclude) {
+                         exclude= '-' + req.query.exclude;
+                        console.log(exclude);
+                    }
 
                     /*.where(filter.name).equals(filter.equals)*/
 
-                    model.find().limit(limitItem).sort({ CreateAt: -1}).
+                    model.find().limit(limitItem).sort({ CreateAt: -1}).select(exclude).
                         skip(page * limitItem).exec(function (err, result) {
 
                             if (err) {

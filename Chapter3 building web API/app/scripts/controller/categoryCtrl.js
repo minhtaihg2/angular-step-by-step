@@ -10,6 +10,7 @@ angular.module('myApp')
             var _id = $stateParams.id;
 
             var postForCategories = function (data) {
+                console.log(data);
                 var length = data.length;
                 for (var i = 0; i < length; i++) {
                     if (data[i].Category._id == _id) {
