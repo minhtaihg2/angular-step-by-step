@@ -125,22 +125,20 @@ angular.module('myApp')
             };
             loadComments();
 
-            /*
 
-             var dataPostId = Restangular.one("posts", _id);
+            var dataPostId = Restangular.one("posts", _id);
 
-             dataPostId.get().
-             then(function (detail) {
-             console.log('detail : ', detail.views);
-             detail.views = detail.views + 1;
+            dataPostId.get().
+                then(function (detail) {
+                    console.log('detail : ', detail.views);
+                    detail.views = detail.views + 1;
 
-             detail.put().then(function(project){
-             console.log('save :',project);
-             });
-             console.log('data :',data);
-             $scope.post = detail;
-             });
-             */
+                    detail.put().then(function (project) {
+                        console.log('save :', project);
+                    });
+                    console.log('data :', data);
+                    $scope.post = detail;
+                });
 
 
         }]);
