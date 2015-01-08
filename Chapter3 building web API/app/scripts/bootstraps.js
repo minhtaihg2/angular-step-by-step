@@ -176,7 +176,6 @@ angular.module('myApp', [
         $rootScope.$state = $state;
         var lastState;
         $rootScope.$on('$stateChangeStart', function (event, to, toParams, fromState, from) {
-
             if (auth.getUser() === null) {
                 auth.pendingStateChange = {
                     to: to,

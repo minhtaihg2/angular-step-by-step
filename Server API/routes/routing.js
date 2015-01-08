@@ -452,6 +452,8 @@ module.exports = function (app, collection) {
                                 return res.status(400).send({ message: 'User not found' });
                             }
                             user.facebook = profile.id;
+                            
+                            console.log('user :',user);
                             user.displayName = user.displayName || profile.name;
                             user.save(function (err) {
                                 res.send({ token: createToken(user), bitMask: 1, user: user });
@@ -468,6 +470,7 @@ module.exports = function (app, collection) {
                         var user = new User();
                         user.facebook = profile.id;
                         user.displayName = profile.name;
+                        console.log('user :',user);
                         user.save(function (err) {
                             res.send({ token: createToken(user), bitMask: 1, user: user});
                         });

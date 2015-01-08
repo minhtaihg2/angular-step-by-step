@@ -9,6 +9,7 @@ angular.module('myApp')
 
             $scope.authenticate = function (provider) {
                 auth.authenticate(provider, function (err, resp) {
+                    console.log('login :',resp);
                     $http.get('http://localhost:3000/api/me').success(function (data) {
                         $rootScope.userData = data;
                         console.log(data);

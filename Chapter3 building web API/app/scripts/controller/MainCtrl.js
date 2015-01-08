@@ -21,7 +21,7 @@ angular.module('myApp')
 
                 // this is just an example, in reality this stuff should be in a service
 
-                getData.getDataTable('posts', 2, pageNumber,exclude).then(function (data) {
+                getData.getDataTable('posts', 3, pageNumber,exclude).then(function (data) {
                     $scope.posts = data;
                     //$scope.totalPosts = data.Count;
                     $loading.finish('posts');
@@ -42,10 +42,5 @@ angular.module('myApp')
                 });
             }
 
-            Restangular.all("sessions").getList().then(function (sessions) {
-                console.log('sessions :', sessions);
-            });
-            Restangular.one("courses", '544f198b2b4beba557bf83b9').get().then(function (data) {
-                console.log('data courses 1 :', data)
-            });
+           
         }]);

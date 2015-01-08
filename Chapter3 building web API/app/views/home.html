@@ -1,7 +1,7 @@
 <div style="min-height:350px" dw-loading="posts" dw-loading-options="{text: 'tải dữ liệu...'}" class="users-list">
     <!--  <input type="text" ng-model="searchPost.title"/>-->
 
-    <div class="post" dir-paginate="post in posts | filter : searchPost | itemsPerPage: 2" total-items="postPerPage">
+    <div class="post" dir-paginate="post in posts | filter : searchPost | itemsPerPage: 3" total-items="postPerPage">
         <h2><a ng-bind-html="post.title | highlight:searchPost.title"
                ng-click="goToPage('index.detail',{id : post._id})"></a></h2>
 
