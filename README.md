@@ -52,7 +52,7 @@ Browser : http://localhost:3000/userSchema2 -> show user (user local + user soci
 
 ==========================
 
-user Admin login :
+user admin login :
 
 username : admin@gmail.com
 password : admin
