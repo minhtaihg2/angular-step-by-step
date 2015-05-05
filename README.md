@@ -3,7 +3,7 @@ Angular-step-by-step
 
 Learning AngularJS step by step
 
-#### Chapter 1 Basic AngularJS with 
+#### Chapter 1 Basic AngularJS with:
 
 * Controller
 * Core API angularJS
